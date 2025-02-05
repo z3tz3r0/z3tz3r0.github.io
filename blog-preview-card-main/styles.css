@@ -94,6 +94,10 @@ main {
     font-weight: 800;
     margin: 0.15rem;
 }
+.card-title:hover {
+    color: var(--color-yellow);
+    cursor: pointer;
+}
 
 .card-description {
     color: var(--color-gray500);
