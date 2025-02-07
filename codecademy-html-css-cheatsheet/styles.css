@@ -1,0 +1,326 @@
+:root {
+    --bg-clr: rgb(50,50,50);
+    --bg-box-clr: rgb(35,35,35);
+    --box-clr: rgb(4,131,195);
+    --clr-white: rgb(255,255,255);
+    --clr-grey: rgb(150, 150, 150);
+
+    --fs-big: 1.25rem;
+    --fs-normal: 1rem;
+    --fs-small: 0.825rem;
+    --fs-header: 1.75rem;
+    --fs-table-head: 1rem;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: monospace;
+    background-color: var(--bg-clr);
+    color: white;
+}
+
+/* Header */
+
+header {
+    margin: 6rem auto 3rem;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+.sub-heading {
+    text-align: center;
+    font-size: 1rem;
+}
+
+a,
+a:link,
+a:hover,
+a:visited {
+    color: var(--clr-grey);
+    text-decoration: none;
+}
+
+
+
+/* Body */
+.container {
+    background-color: var(--bg-box-clr);
+    width: clamp(300px, 90%, 1100px);
+    height: max-content;
+    margin: 1.5rem auto;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+}
+
+h2 {
+    font-size: var(--fs-header);
+    margin-bottom: 1rem;
+}
+
+table,
+tr,
+td {
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+thead {
+    color: var(--clr-grey);
+    font-size: var(--fs-table-head);
+}
+
+tr {
+    height: 2rem;
+}
+
+tbody tr {
+    height: 5rem;
+}
+
+tbody .mult-line {
+    height: 7.5rem;
+}
+
+td {
+    width: clamp(90px,20dvw,170px)
+}
+
+td.col-name,
+td.col-css {
+    font-size: var(--fs-big);
+}
+
+td.col-name {
+    text-align: left;
+    padding-left: 1rem;
+}
+
+.normal-text {
+    font-size: var(--fs-normal);
+}
+
+.txt-grey {
+    color: var(--clr-grey);
+}
+
+tbody tr {
+    border-bottom: 1px solid var(--clr-grey);
+}
+
+tbody tr:last-child {
+    border: 0;
+}
+
+.col-descr {
+    width: clamp(120px,25dvw,250px);
+    text-align: left;
+}
+
+.col-descr p {
+    font-size: var(--fs-normal);
+}
+
+.col-descr small {
+    display: block;
+    font-size: var(--fs-small);
+    color: var(--clr-grey);
+}
+
+.box {
+    display: inline-block;
+    position: relative;
+    padding: 0.25rem 0.5rem;
+    margin: 0 0.25rem;
+    border: 1px solid var(--clr-white);
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    color: var(--clr-white);
+    font-weight: bolder;
+    width: max-content;
+}
+
+.box.activate {
+    color: var(--clr-white);
+    background-color: var(--box-clr);
+    border: 1px solid var(--box-clr);
+}
+
+.lv1 {
+    margin: 0 auto 0.5rem;
+}
+
+/* vertical line*/
+.lv1::before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 6px;
+    background: var(--clr-white);
+}
+
+ol {
+    list-style: none;
+}
+
+.lv2-wrapper {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 60%;
+    margin: 0 auto;
+}
+
+.lv2-wrapper::before {
+    content: "";
+    position: absolute;
+    top: -4px;
+    left: 25%;
+    width: 50%;
+    height: 1px;
+    background: var(--clr-white);
+}
+
+.lv2-wrapper li {
+    position: relative;
+}
+
+.lv2-wrapper > li::before {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 4px;
+    background-color: var(--clr-white);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+}
+
+.lv2::before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 1px;
+    height: 6px;
+    background-color: var(--clr-white);
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+}
+
+.lv3-wrapper {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 0.5rem auto;
+}
+
+.lv3-wrapper::before {
+    content: "";
+    position: absolute;
+    top: -4px;
+    left: 25%;
+    width: 50%;
+    height: 1px;
+    background: var(--clr-white);
+}
+
+.lv3-wrapper li {
+    position: relative;
+}
+
+.lv3-wrapper > li::before {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 4px;
+    background-color: var(--clr-white);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+}
+
+/* Org Chart but only 2 levels */
+
+.lv1-2 {
+    position: relative;
+    left: 2%;
+    margin: 0 auto 0.5rem;
+}
+
+.lv1-2::before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 6px;
+    background: var(--clr-white);
+}
+
+.lv2-wrapper-2 {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 85%;
+    margin: 0 auto;
+}
+
+.lv2-wrapper-2::before {
+    content: "";
+    position: absolute;
+    top: -4px;
+    left: 26%;
+    width: 50%;
+    height: 1px;
+    background: var(--clr-white);
+}
+
+.lv2-wrapper-2 li {
+    position: relative;
+}
+
+.lv2-wrapper-2 > li::before {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 4px;
+    background-color: var(--clr-white);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+}

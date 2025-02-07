@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>CSS Cheatsheet</title>
+        <link rel="stylesheet" type="text/css" href="styles.css" />
+    </head>
+    <body>
+        <header>
+            <h1>CSS &lbrace;selectors: cheat-sheet&rbrace;</h1>
+            <p class="sub-heading">
+                By Web Dev Simplified
+                <span class="main-link"
+                    ><a href="https://courses.webdevsimplified.com"
+                        >https://courses.webdevsimplified.com</a
+                    ></span
+                >
+            </p>
+        </header>
+        <main>
+            <article class="container">
+                <h2>Basic</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>CSS</th>
+                            <th>Description</th>
+                            <th>Results</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="col-name">
+                                Universal
+                                <span class="normal-text txt-grey"
+                                    >Selector</span
+                                >
+                            </td>
+                            <td class="col-css">*</td>
+                            <td class="col-descr">
+                                <p>Select all elements</p>
+                            </td>
+                            <td class="col-result">
+                                <span class="box activate">a</span
+                                ><span class="box activate">b</span
+                                ><span class="box activate">c</span
+                                ><span class="box activate">d</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-name">
+                                Type
+                                <span class="normal-text txt-grey"
+                                    >Selector</span
+                                >
+                            </td>
+                            <td class="col-css">div</td>
+                            <td class="col-descr">
+                                <p>Select elements of type</p>
+                                <small>Select div elements</small>
+                            </td>
+                            <td class="col-result">
+                                <span class="box">a</span
+                                ><span class="box activate">div</span
+                                ><span class="box activate">c</span
+                                ><span class="box">div</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-name">
+                                Class
+                                <span class="normal-text txt-grey"
+                                    >Selector</span
+                                >
+                            </td>
+                            <td class="col-css">.c</td>
+                            <td class="col-descr">
+                                <p>Select elements with that class</p>
+                                <small>Select elements with the c class</small>
+                            </td>
+                            <td class="col-result">
+                                <span class="box">.a</span
+                                ><span class="box">.b</span
+                                ><span class="box activate">.c</span
+                                ><span class="box">.d</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-name">
+                                Id
+                                <span class="normal-text txt-grey"
+                                    >Selector</span
+                                >
+                            </td>
+                            <td class="col-css">#i</td>
+                            <td class="col-descr">
+                                <p>Select elements with that id</p>
+                                <small
+                                    >Select elements with the id<br />*it is
+                                    best practice to not use ids in CSS</small
+                                >
+                            </td>
+                            <td class="col-result">
+                                <span class="box">.a</span
+                                ><span class="box">.b</span
+                                ><span class="box activate">.c</span
+                                ><span class="box">.d</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </article>
+            <article class="container">
+                <h2>Combination</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>CSS</th>
+                            <th>Description</th>
+                            <th>Results</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="mult-line">
+                            <td class="col-name">
+                                Descendant
+                                <span class="normal-text txt-grey"
+                                    >Selector</span
+                                >
+                            </td>
+                            <td class="col-css">div a</td>
+                            <td class="col-descr">
+                                <p>
+                                    Select elements that are descendants of the
+                                    first element
+                                </p>
+                                <small
+                                    >Select anchors that are inside a div</small
+                                >
+                            </td>
+                            <td class="col-result">
+                                <span class="lv1 box">div</span>
+                                <ol class="lv2-wrapper">
+                                    <li>
+                                        <span class="box lv2">a</span>
+                                        <ol class="lv3-wrapper">
+                                            <li>
+                                                <span class="box activate"
+                                                    >a</span
+                                                >
+                                            </li>
+                                            <li>
+                                                <span class="box">c</span>
+                                            </li>
+                                        </ol>
+                                    </li>
+                                    <li>
+                                        <span class="box lv2">b</span>
+                                        <ol class="lv3-wrapper">
+                                            <li>
+                                                <span class="box activate"
+                                                    >a</span
+                                                >
+                                            </li>
+                                            <li>
+                                                <span class="box">d</span>
+                                            </li>
+                                        </ol>
+                                    </li>
+                                </ol>
+                            </td>
+                        </tr>
+                        <tr class="mult-line">
+                            <td class="col-name">
+                                Direct Child
+                                <span class="normal-text txt-grey"
+                                    >Selector</span
+                                >
+                            </td>
+                            <td class="col-css">div > a</td>
+                            <td class="col-descr">
+                                <p>
+                                    Select elements that are direct children of
+                                    the first element
+                                </p>
+                                <small
+                                    >Select anchors that are direct children of
+                                    a div</small
+                                >
+                            </td>
+                            <td class="col-result">
+                                <span class="lv1 box">div</span>
+                                <ol class="lv2-wrapper">
+                                    <li>
+                                        <span class="box lv2">a</span>
+                                        <ol class="lv3-wrapper">
+                                            <li>
+                                                <span class="box activate"
+                                                    >a</span
+                                                >
+                                            </li>
+                                            <li>
+                                                <span class="box">c</span>
+                                            </li>
+                                        </ol>
+                                    </li>
+                                    <li>
+                                        <span class="box lv2">b</span>
+                                        <ol class="lv3-wrapper">
+                                            <li>
+                                                <span class="box">a</span>
+                                            </li>
+                                            <li>
+                                                <span class="box">d</span>
+                                            </li>
+                                        </ol>
+                                    </li>
+                                </ol>
+                            </td>
+                        </tr>
+                        <tr class="mult-line">
+                            <td class="col-name">
+                                General Sibling
+                                <span class="normal-text txt-grey"
+                                    >Selector</span
+                                >
+                            </td>
+                            <td class="col-css">div ~ a</td>
+                            <td class="col-descr">
+                                <p>
+                                    Select elements that are siblings of the
+                                    first element and come after the first
+                                    element
+                                </p>
+                                <small
+                                    >Select all anchors that are sibling of a
+                                    div and come after the div</small
+                                >
+                            </td>
+                            <td class="col-result">
+                                <span class="box">a</span>
+                                <span class="box">div</span>
+                                <span class="box activate">a</span>
+                                <span class="box activate">a</span>
+                            </td>
+                        </tr>
+                        <tr class="mult-line">
+                            <td class="col-name">
+                                Adjacent Sibling
+                                <span class="normal-text txt-grey"
+                                    >Selector</span
+                                >
+                            </td>
+                            <td class="col-css">div + a</td>
+                            <td class="col-descr">
+                                <p>
+                                    Select elements that are siblings of the
+                                    first element and come directly after the
+                                    first element
+                                </p>
+                                <small
+                                    >Select all anchors that are sibling of a
+                                    div and come directly after the div</small
+                                >
+                            </td>
+                            <td class="col-result">
+                                <span class="box">a</span>
+                                <span class="box">div</span>
+                                <span class="box activate">a</span>
+                                <span class="box">a</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-name">
+                                Or
+                                <span class="normal-text txt-grey"
+                                    >Selector</span
+                                >
+                            </td>
+                            <td class="col-css">div, a</td>
+                            <td class="col-descr">
+                                <p>
+                                    Select elements that match any selector in
+                                    the list
+                                </p>
+                                <small>Selects all anchors and all divs</small>
+                            </td>
+                            <td class="col-result">
+                                <span class="box activate">a</span>
+                                <span class="box activate">div</span>
+                                <span class="box activate">a</span>
+                                <span class="box">a</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-name">
+                                And
+                                <span class="normal-text txt-grey"
+                                    >Selector</span
+                                >
+                            </td>
+                            <td class="col-css">div.c</td>
+                            <td class="col-descr">
+                                <p>
+                                    Select elements that match all the selector
+                                    combinations
+                                </p>
+                                <small>Selects all divs with the class c</small>
+                            </td>
+                            <td class="col-result">
+                                <span class="box">.a</span>
+                                <span class="box activate">div.c</span>
+                                <span class="box">.c</span>
+                                <span class="box">div</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </article>
+            <article class="container">
+                <h2>Attribute</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>CSS</th>
+                            <th>Description</th>
+                            <th>Results</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="mult-line">
+                            <td class="col-name">
+                                Has
+                                <span class="normal-text txt-grey"
+                                    >Attribute</span
+                                >
+                            </td>
+                            <td class="col-css">[a]]</td>
+                            <td class="col-descr">
+                                <p>Select elements that have that attribute</p>
+                                <small
+                                    >Select elements with the a attribute</small
+                                >
+                            </td>
+                            <td class="col-result">
+                                <span class="box activate">[a]</span>
+                                <span class="box activate">[a="1"]</span>
+                                <span class="box">[c]</span>
+                                <span class="box">d</span>
+                            </td>
+                        </tr>
+                        <tr class="mult-line">
+                            <td class="col-name">
+                                Exact
+                                <span class="normal-text txt-grey"
+                                    >Attribute</span
+                                >
+                            </td>
+                            <td class="col-css">[a="1"]</td>
+                            <td class="col-descr">
+                                <p>
+                                    Select elements that have that attribute
+                                    with exactly that value
+                                </p>
+                                <small
+                                    >Select elements with the a attribute with a
+                                    value of 1</small
+                                >
+                            </td>
+                            <td class="col-result">
+                                <span class="box">[a]</span>
+                                <span class="box activate">[a="1"]</span>
+                                <span class="box">[c]</span>
+                                <span class="box">d</span>
+                            </td>
+                        </tr>
+                        <tr class="mult-line">
+                            <td class="col-name">
+                                Begins With
+                                <span class="normal-text txt-grey"
+                                    >Attribute</span
+                                >
+                            </td>
+                            <td class="col-css">[a^="1"]</td>
+                            <td class="col-descr">
+                                <p>
+                                    Select elements that have that attribute
+                                    which start with that value
+                                </p>
+                                <small
+                                    >Select elements with the a attribute with a
+                                    value that starts with 1</small
+                                >
+                            </td>
+                            <td class="col-result">
+                                <span class="box activate">[a="12"]</span>
+                                <span class="box">[a="21"]</span>
+                            </td>
+                        </tr>
+                        <tr class="mult-line">
+                            <td class="col-name">
+                                Ends With
+                                <span class="normal-text txt-grey"
+                                    >Attribute</span
+                                >
+                            </td>
+                            <td class="col-css">[a$="1"]</td>
+                            <td class="col-descr">
+                                <p>
+                                    Select elements that have that attribute
+                                    which end with that value
+                                </p>
+                                <small
+                                    >Select elements with the a attribute with a
+                                    value that ends with 1</small
+                                >
+                            </td>
+                            <td class="col-result">
+                                <span class="box">[a="12"]</span>
+                                <span class="box activate">[a="21"]</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-name">
+                                Substring
+                                <span class="normal-text txt-grey"
+                                    >Attribute</span
+                                >
+                            </td>
+                            <td class="col-css">[a*="1"]</td>
+                            <td class="col-descr">
+                                <p>
+                                    Select elements that have that attribute
+                                    which end with that value
+                                </p>
+                                <small
+                                    >Select elements with the a attribute with a
+                                    value that ends with 1</small
+                                >
+                            </td>
+                            <td class="col-result">
+                                <span class="box activate">[a="12"]</span>
+                                <span class="box activate">[a="21"]</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </article>
+            <article class="container">
+                <h2>Pseudo Element</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>CSS</th>
+                            <th>Description</th>
+                            <th>Results</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="mult-line">
+                            <td class="col-name">
+                                Before
+                                <span class="normal-text txt-grey"
+                                    >Selector</span
+                                >
+                            </td>
+                            <td class="col-css">div::before</td>
+                            <td class="col-descr">
+                                <p>
+                                    Creates an empty element directly before the
+                                    children of selected element
+                                </p>
+                            </td>
+                            <td class="col-result">
+                                <span class="lv1-2 box">div</span>
+                                <ol class="lv2-wrapper-2">
+                                    <li>
+                                        <span class="box lv2-2 activate"
+                                            >before</span
+                                        >
+                                    </li>
+                                    <li>
+                                        <span class="box lv2-2">c</span>
+                                    </li>
+                                    <li>
+                                        <span class="box lv2-2">after</span>
+                                    </li>
+                                </ol>
+                            </td>
+                        </tr>
+                        <tr class="mult-line">
+                            <td class="col-name">
+                                Before
+                                <span class="normal-text txt-grey"
+                                    >Selector</span
+                                >
+                            </td>
+                            <td class="col-css">div::after</td>
+                            <td class="col-descr">
+                                <p>
+                                    Creates an empty element directly after the
+                                    children of selected element
+                                </p>
+                            </td>
+                            <td class="col-result">
+                                <span class="lv1-2 box">div</span>
+                                <ol class="lv2-wrapper-2">
+                                    <li>
+                                        <span class="box lv2-2">before</span>
+                                    </li>
+                                    <li>
+                                        <span class="box lv2-2">c</span>
+                                    </li>
+                                    <li>
+                                        <span class="box lv2-2 activate"
+                                            >after</span
+                                        >
+                                    </li>
+                                </ol>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </article>
+            <article class="container">
+                <h2>
+                    Pseudo Element
+                    <span class="col-name txt-grey">State</span>
+                </h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>CSS</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="col-name">
+                                Hover
+                                <span class="normal-text txt-grey"
+                                    >Selector</span
+                                >
+                            </td>
+                            <td class="col-css">button:hover</td>
+                            <td class="col-descr">
+                                <p>
+                                    Select elements that are hovered by the
+                                    mouse
+                                </p>
+                                <small
+                                    >Select buttons that are being
+                                    hovered</small
+                                >
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-name">
+                                Focus
+                                <span class="normal-text txt-grey"
+                                    >Selector</span
+                                >
+                            </td>
+                            <td class="col-css">button:focus</td>
+                            <td class="col-descr">
+                                <p>Select elements that are focused</p>
+                                <small
+                                    >Select buttons that are being
+                                    focused</small
+                                ><small
+                                    >*Focus is set by either tabbing to an
+                                    element or clicking an element such as a
+                                    button or anchor tag</small
+                                >
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-name">
+                                Required
+                                <span class="normal-text txt-grey"
+                                    >Selector</span
+                                >
+                            </td>
+                            <td class="col-css">input:required</td>
+                            <td class="col-descr">
+                                <p>Select elements that are required</p>
+                                <small
+                                    >Select inputs that are required
+                                    attribute</small
+                                >
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-name">
+                                Checked
+                                <span class="normal-text txt-grey"
+                                    >Selector</span
+                                >
+                            </td>
+                            <td class="col-css">input:checked</td>
+                            <td class="col-descr">
+                                <p>
+                                    Select checkboxes/radio buttons that are
+                                    checked
+                                </p>
+                                <small>Select inputs that are checked</small>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col-name">
+                                Disabled
+                                <span class="normal-text txt-grey"
+                                    >Selector</span
+                                >
+                            </td>
+                            <td class="col-css">input:disabled</td>
+                            <td class="col-descr">
+                                <p>Select inputs that are disabled</p>
+                                <small
+                                    >Select inputs with the disabled
+                                    attribute</small
+                                >
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </article>
+        </main>
+    </body>
+</html>
