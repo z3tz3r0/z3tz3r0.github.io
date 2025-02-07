@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Login | Generation Thailand</title>
+        <link
+            href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+            rel="stylesheet"
+        />
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+            :root {
+                --clr-white: white;
+                --clr-grey: grey;
+                --content-width: 80%;
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: "Poppins", sans-serif;
+            }
+
+            body {
+                display: grid;
+                place-content: center;
+                min-height: 100vh;
+                background-image: url(https://static.vecteezy.com/system/resources/previews/004/865/262/non_2x/beautiful-calm-night-in-mountain-forest-with-moon-and-stars-vector.jpg);
+                background-position: center;
+                background-size: cover;
+                color: var(--clr-white);
+            }
+
+            /* Main form */
+
+            fieldset {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                width: 400px;
+                height: 500px;
+                text-align: center;
+                background: rgba(255, 255, 255, 0.05);
+                border-radius: 16px;
+                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.3);
+            }
+
+            legend {
+                font-size: 2rem;
+                font-weight: bold;
+            }
+
+            /* The form */
+
+            label.input-text {
+                position: absolute;
+                left: -999rem;
+            }
+
+            .input-box {
+                position: relative;
+                width: var(--content-width);
+                margin: 0 auto;
+            }
+
+            .input-field {
+                background-color: rgba(0, 0, 0, 0);
+                border: 1px solid var(--clr-white);
+                color: var(--clr-white);
+                width: 100%;
+                border-radius: 99rem;
+                padding: 1rem;
+                font-size: 1rem;
+            }
+
+            .input-field::placeholder {
+                color: var(--clr-white);
+            }
+
+            .input-box i,
+            .input-box i {
+                position: absolute;
+                right: 0.5rem;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            .bx {
+                padding: 10px;
+                min-width: 40px;
+            }
+
+            .manage-password,
+            .remember-password {
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+            }
+
+            .remember-password label {
+                margin-left: 0.25rem;
+            }
+
+            .manage-password label,
+            .manage-password p {
+                font-size: 0.8rem;
+            }
+
+            input[type="submit"] {
+                border: 1px solid var(--clr-white);
+                width: var(--content-width);
+                padding: 0.75rem;
+                margin: 0 auto;
+                border-radius: 99rem;
+                background-color: var(--clr-white);
+                color: black;
+                font-weight: bold;
+                font-size: 1rem;
+            }
+
+            input[type="submit"] ~ p {
+                font-weight: 600;
+            }
+
+            input[type="submit"] ~ p > span {
+                font-weight: 100;
+            }
+
+            a,
+            a:visited,
+            a:active {
+                color: var(--clr-white);
+                text-decoration: none;
+            }
+
+            a:hover {
+                text-decoration: underline;
+            }
+
+            footer {
+                position: fixed;
+                bottom: 0.5rem;
+                text-align: center;
+                width: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <form action="something" method="post">
+                <fieldset>
+                    <legend class="form-name">Login</legend>
+                    <section class="input-box">
+                        <label for="username" class="input-text"
+                            >Username</label
+                        >
+                        <input
+                            type="email"
+                            name="username"
+                            id="username"
+                            class="input-field"
+                            placeholder="Username"
+                            autocomplete="off"
+                            required
+                        />
+                        <i class="bx bxs-user"></i>
+                    </section>
+                    <section class="input-box">
+                        <label for="password" class="input-text"
+                            >Password</label
+                        >
+                        <input
+                            type="password"
+                            name="password"
+                            id="password"
+                            class="input-field"
+                            placeholder="Password"
+                            minlength="8"
+                            maxlength="20"
+                            autocomplete="off"
+                            required
+                        />
+                        <i class="bx bxs-lock-alt"></i>
+                    </section>
+                    <section class="manage-password">
+                        <section class="remember-password">
+                            <input
+                                type="checkbox"
+                                name="remember-password"
+                                id="remember-password"
+                                value="remember-pwd"
+                            />
+                            <label for="remember-password">
+                                Remember password</label
+                            >
+                        </section>
+                        <p>
+                            <a href="./forgot-password.html">Forgot password</a>
+                        </p>
+                    </section>
+                    <input type="submit" value="Login" />
+                    <p>
+                        <span class="thin-text">Don't have an account?</span>
+                        <a href="./signup.html">Register</a>
+                    </p>
+                </fieldset>
+            </form>
+        </main>
+        <footer>
+            <p>&copy; Kittipan Feb 2025</p>
+        </footer>
+    </body>
+</html>
