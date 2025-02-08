@@ -1,0 +1,152 @@
+@font-face {
+    font-family: 'Inter';
+    src: url('./assets/fonts/Inter-VariableFont_slnt\,wght.ttf') format('truetype');
+}
+
+/* 
+## Typography
+
+### Body Copy
+
+-   Font size (paragraph): 14px
+
+### Font
+
+-   Family: [Inter](https://fonts.google.com/specimen/Inter)
+-   Weights: 400, 600, 700 */
+
+
+:root {
+    --clr-primary-lt: hsl(0, 0%, 20%);
+    --clr-primary: hsl(0, 0%, 12%);
+    --clr-primary-dk: hsl(0, 0%, 8%);
+
+    --clr-secondary: hsl(0, 0%, 100%);
+
+    --clr-accent: hsl(75, 94%, 57%);
+
+    --ff: 'Inter', sans-serif;
+
+    --fw-normal: 400;
+    --fw-bold: 600;
+    --fw-bolder: 700;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: var(--ff);
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--clr-primary-dk);
+    color: var(--clr-secondary);
+}
+
+a {
+    color: var(--clr-secondary);
+    text-decoration: none;
+}
+
+main {
+    display: grid;
+    place-content: center;
+    height: 100%;
+}
+
+/* Using BEM naming style to be element base */
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: clamp(20.5rem, 19.048rem + 6.2vw, 24.625rem);
+    height: clamp(37rem, 30.828rem + 12.16vw, 38.125rem);
+    background-color: var(--clr-primary);
+    border-radius: 0.75rem;
+    -webkit-border-radius: 0.75rem;
+    -moz-border-radius: 0.75rem;
+    -ms-border-radius: 0.75rem;
+    -o-border-radius: 0.75rem;
+    padding: clamp(1.5rem, -3.986rem + 10.81vw, 2.5rem)    clamp(1.125rem, 0.641rem + 2.07vw, 2.5rem);
+    text-align: center;
+}
+
+.card__info {
+    height: max-content;
+}
+.card__info_avatar {
+    border-radius: 99rem;
+    -webkit-border-radius: 99rem;
+    -moz-border-radius: 99rem;
+    -ms-border-radius: 99rem;
+    -o-border-radius: 99rem;
+    width: 5.625rem;
+    height: 5.625rem;
+    margin-bottom: 1.475rem;
+}
+
+.card__info_name {
+    color: var(--clr-secondary);
+    font-size: 1.5rem;
+    font-weight: var(--fw-bold);
+    margin-bottom: 0.575rem;
+}
+
+.card__info_address {
+    color: var(--clr-accent);
+    font-size: 0.875rem;
+    font-weight: var(--fw-bolder)
+}
+.card__info_address {
+    color: var(--clr-accent);
+    font-size: 0.875rem;
+    margin-bottom: 2rem;
+}
+
+.card__info_intro {
+    font-size: 0.875rem;
+}
+
+.card__links {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-top: 1.7rem;
+    height: 100%;
+}
+
+.card__button_solinks {
+    background-color: var(--clr-primary-lt);
+    border-radius: 0.3rem;
+    -webkit-border-radius: 0.3rem;
+    -moz-border-radius: 0.3rem;
+    -ms-border-radius: 0.3rem;
+    -o-border-radius: 0.3rem;
+    padding: 0.9rem;
+    font-size: 0.875rem;
+    font-weight: var(--fw-bolder);
+    cursor: pointer;
+}
+
+.card__button_solinks:active {
+    color: var(--clr-primary-dk);
+    background-color: var(--clr-accent);
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    padding: 1rem;
+    width: 100vw;
+    text-align: center;
+}
+
+.attribution { font-size: 11px; color: var(--clr-secondary); text-align: center; }
+.attribution a { color: var(--clr-secondary); }
