@@ -1,0 +1,185 @@
+/* Factory Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* General style */
+/* Quick util */
+
+
+
+body {
+    font-family: Helvetica, sans-serif;
+    font-size: 22px;
+    color: seashell;
+    background-color: black;
+    opacity: 0.9;
+    width: 100%;
+}
+
+a,
+a:focus,
+a:visited {
+    color: seashell;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 69px;
+    background-color: black;
+    padding: 10px;
+    border-bottom: 1px solid seashell;
+    z-index: 999;
+}
+
+.navbar__logo {
+    width: auto;
+    height: 50px;
+}
+
+.navbar__menu ul {
+    display: flex;
+    gap: 1.5rem;
+    list-style-type: none;
+}
+
+/* Main section */
+
+/* Hero banner */
+.hero__banner {
+    display: relative;
+    margin-top: 69px;
+}
+
+.hero__banner_img {
+    display: block;
+    padding: 0 2rem;
+    margin: 0 auto;
+    width: 100%;
+    height: auto;
+}
+
+.hero__banner_text {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    font-size: 2vw;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+}
+
+.featured {
+    width: clamp(90%, 95vw ,1000px);
+    margin: 4rem auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.featured__header {
+    font-size: 3vw;
+    font-weight: bold;
+}
+
+.featured__subheader {
+    font-size: 2vw;
+    margin: 1.5vh 0 3vh;
+}
+
+.featured__images {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.featured__image_container { flex-basis: 300px; }
+
+.featured__image_container img { width: 300px; }
+
+.featured__image_container figcaption {
+    margin: 0.5rem;
+    font-weight: bold;
+}
+
+.locations {
+    position: relative;
+    background-image: url('./assets/img-locations-background.webp');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 95%;
+    min-height: 500px;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+}
+
+.locations__heading {
+    margin: 1rem auto;
+}
+
+.locations__address_container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-basis: 300px; /* Control the height */
+}
+
+.locations__address {
+    display: flex;
+    flex-flow: column;
+    flex-basis: 300px; /*  Control the width */
+    gap: 1rem;
+    justify-content: space-evenly;
+    background-color: black;
+}
+
+.locations__address p {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 60%;
+}
+
+.locations__address p > span {
+    display: block;
+}
+
+.contact {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    margin-top: 10px;
+    height: 200px;
+    gap: 2rem;
+}
+
+footer {
+    width: 100%;
+    padding: 2rem;
+}
+
+footer p {
+    margin-left: 20px;
+}
