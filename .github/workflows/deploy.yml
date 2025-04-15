@@ -22,24 +22,29 @@ jobs:
         steps:
             - name: Checkout
               uses: actions/checkout@v4
-            - name: Set up Node
+
+            - name: Set up Node # Step 1: Set up Node runtime (provides npm)
+              id: setup-node # Add an ID for potential later use if needed
               uses: actions/setup-node@v4
               with:
                   node-version: 20
-                  cache: "pnpm"
-            - name: Install pnpm via npm # <<< ADD THIS STEP
-              run: npm install -g pnpm@8 # Or specify your desired version, or remove @8 for latest
-            # --- REMOVE the pnpm/action-setup step ---
-            # - name: Install pnpm
-            #   uses: pnpm/action-setup@v3
-            #   with:
-            #     version: 8
+                  cache: "pnpm" # Keep this - relies on pnpm-lock.yaml existing
+
+            - name: Install pnpm via npm # Step 2: Install pnpm globally right after Node setup
+              run: npm install -g pnpm@8 # Specify your desired version or remove @8 for latest
+
+            # Step 3: Install dependencies using the globally installed pnpm
+            # The cache from setup-node should still apply based on the lock file.
             - name: Install dependencies
-              run: pnpm install # <<< Should now find globally installed pnpm
+              run: pnpm install
+
+            # Step 4: Build using pnpm
             - name: Build
-              run: pnpm run build # <<< Should now find globally installed pnpm
+              run: pnpm run build
+
             - name: Add .nojekyll file
               run: touch dist/.nojekyll
+
             - name: Upload artifact
               uses: actions/upload-pages-artifact@v3
               with:
