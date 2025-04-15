@@ -49,6 +49,7 @@ function useElementWidth(ref: React.RefObject<HTMLElement>): number {
 
     useLayoutEffect(() => {
         function updateWidth() {
+            if (!ref) return;
             if (ref.current) {
                 setWidth(ref.current.offsetWidth);
             }
@@ -107,7 +108,9 @@ export const ScrollVelocity: React.FC<ScrollVelocityProps> = ({
         );
 
         const copyRef = useRef<HTMLSpanElement>(null);
-        const copyWidth = useElementWidth(copyRef);
+        const copyWidth = useElementWidth(
+            copyRef as React.RefObject<HTMLElement>
+        );
 
         function wrap(min: number, max: number, v: number): number {
             const range = max - min;
@@ -122,6 +125,7 @@ export const ScrollVelocity: React.FC<ScrollVelocityProps> = ({
 
         const directionFactor = useRef<number>(1);
         useAnimationFrame((t, delta) => {
+            console.log(t);
             let moveBy =
                 directionFactor.current * baseVelocity * (delta / 1000);
 
