@@ -26,18 +26,18 @@ jobs:
               uses: actions/setup-node@v4
               with:
                   node-version: 20
-                  cache: "pnpm" # Keep pnpm caching
-            - name: Enable Corepack # <<< ADD THIS STEP
-              run: corepack enable
+                  cache: "pnpm"
+            - name: Install pnpm via npm # <<< ADD THIS STEP
+              run: npm install -g pnpm@8 # Or specify your desired version, or remove @8 for latest
             # --- REMOVE the pnpm/action-setup step ---
             # - name: Install pnpm
             #   uses: pnpm/action-setup@v3
             #   with:
             #     version: 8
             - name: Install dependencies
-              run: pnpm install # <<< Should now find pnpm via Corepack
+              run: pnpm install # <<< Should now find globally installed pnpm
             - name: Build
-              run: pnpm run build # <<< Should now find pnpm via Corepack
+              run: pnpm run build # <<< Should now find globally installed pnpm
             - name: Add .nojekyll file
               run: touch dist/.nojekyll
             - name: Upload artifact
