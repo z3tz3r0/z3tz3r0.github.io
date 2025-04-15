@@ -2,6 +2,12 @@ import ProgrammingLanguage from "@/components/ProgrammingLanguage";
 import SubTopic from "@/components/SubTopic";
 import Topic from "@/components/Topic";
 import Layout from "@/containers/Layout";
+import CSS from "../assets/tech/css.webp";
+import HTML from "../assets/tech/html.webp";
+import JavaScript from "../assets/tech/javascript.webp";
+import React from "../assets/tech/react.webp";
+import TailwindCSS from "../assets/tech/tailwind.webp";
+import TypeScript from "../assets/tech/typescript.webp";
 
 interface skill {
     label: string;
@@ -9,12 +15,12 @@ interface skill {
 }
 
 const skills: skill[] = [
-    { label: "HTML", icon: "src/assets/tech/html.webp" },
-    { label: "CSS", icon: "src/assets/tech/css.webp" },
-    { label: "JavaScript", icon: "src/assets/tech/javascript.webp" },
-    { label: "TypeScript", icon: "src/assets/tech/typescript.webp" },
-    { label: "React", icon: "src/assets/tech/react.webp" },
-    { label: "TailwindCSS", icon: "src/assets/tech/tailwind.webp" },
+    { label: "HTML", icon: HTML },
+    { label: "CSS", icon: CSS },
+    { label: "JavaScript", icon: JavaScript },
+    { label: "TypeScript", icon: TypeScript },
+    { label: "React", icon: React },
+    { label: "TailwindCSS", icon: TailwindCSS },
 ];
 
 const Skills = () => {

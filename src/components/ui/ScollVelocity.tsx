@@ -124,8 +124,7 @@ export const ScrollVelocity: React.FC<ScrollVelocityProps> = ({
         });
 
         const directionFactor = useRef<number>(1);
-        useAnimationFrame((t, delta) => {
-            console.log(t);
+        useAnimationFrame((_, delta) => {
             let moveBy =
                 directionFactor.current * baseVelocity * (delta / 1000);
 

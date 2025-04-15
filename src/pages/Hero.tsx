@@ -32,7 +32,7 @@ const Hero = () => {
                 </div>
 
                 <img
-                    src="/public/profile.png"
+                    src="/profile.png"
                     alt="my image"
                     className="rounded-xl w-3xs lg:w-full"
                 />
