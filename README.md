@@ -1,54 +1,90 @@
-# React + TypeScript + Vite
+# z3tz3r0.github.io - Personal Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository hosts the source code for my personal portfolio website, deployed at [https://z3tz3r0.github.io](https://z3tz3r0.github.io). The site showcases my skills, projects, and provides a way to contact me.
 
-Currently, two official plugins are available:
+## About
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This is my personal portfolio website, built to showcase my skills and projects as a full-stack developer. It includes information about my background, technical skills, a portfolio of my work, and contact information. The site is built using modern web technologies and is designed to be responsive and visually appealing.
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **About Me:** Introduction and background information.
+- **Skills:** Overview of technical skills and programming languages.
+- **Work:** Portfolio section highlighting key projects, including a full-stack e-commerce application and other previous works.
+- **Contact:** Form or information for getting in touch.
+- **Responsive Design:** Optimized for various devices.
+- **Smooth Animations:** Utilizes Framer Motion for engaging UI interactions.
+- **Modern UI Components:** Built using Radix UI and styled with Tailwind CSS.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Technologies Used
+
+- **Frontend:**
+  - React (with React 19)
+  - TypeScript
+  - Vite
+  - Tailwind CSS
+  - Radix UI
+  - Framer Motion
+  - Lucide React (for icons)
+  - Simple Icons
+- **Tooling:**
+  - ESLint (with TypeScript and React linting rules)
+  - pnpm (package manager)
+
+## Project Structure
+
+- `public/`: Static assets like images and the favicon.
+- `src/`: Contains the main application source code.
+  - `components/`: Reusable React components, including UI elements (`ui/`).
+  - `containers/`: Components that wrap other components or handle layout.
+  - `lib/`: Utility functions.
+  - `pages/`: Top-level components representing different sections/pages of the website (Hero, About, Skills, Work, Contact, Footer, NavBar).
+- `ecommerce/`: Source code or assets related to the showcased e-commerce project.
+- `previous-work/`: Contains source code or assets for other previous projects showcased on the portfolio.
+
+## Installation
+
+1.  Clone the repository:
+    ```bash
+    git clone https://github.com/z3tz3r0/z3tz3r0.github.io.git
+    ```
+2.  Navigate to the project directory:
+    ```bash
+    cd z3tz3r0.github.io
+    ```
+3.  Install dependencies using pnpm:
+    ```bash
+    pnpm install
+    ```
+
+## Running Locally
+
+To start the development server:
+
+```bash
+pnpm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+This will typically start the server at `http://localhost:5173`.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Building for Production
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+To build the project for production:
+
+```bash
+pnpm run build
 ```
+
+This will generate the production-ready files in the `dist/` directory.
+
+## Linting
+
+To run the linter:
+
+```bash
+pnpm run lint
+```
+
+## License
+
+This project is licensed under the MIT License - see the [`LICENSE`](LICENSE) file for details.
