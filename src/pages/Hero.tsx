@@ -17,12 +17,19 @@ const Hero = () => {
             the web design realm.
           </p>
           <div className="flex gap-4 justify-center">
-            <Button variant="outline" className="py-6 px-10 text-lg">
-              See Work
-            </Button>
-            <Button variant="ghost" className="py-6 px-10 text-lg">
-              View CV
-            </Button>
+            <a href="#work">
+              <Button variant="outline" className="py-6 px-10 text-lg">
+                See Work
+              </Button>
+            </a>
+            <a
+              href="https://drive.google.com/file/d/15SPB_5z-Sdgwr6Reek5ySegv4zBAOzIC/view?usp=sharing"
+              target="_blank"
+            >
+              <Button variant="ghost" className="py-6 px-10 text-lg">
+                View CV
+              </Button>
+            </a>
           </div>
         </div>
 

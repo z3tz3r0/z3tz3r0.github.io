@@ -35,13 +35,14 @@ const projects: Project[] = [
     imageSrc: "/assets/project-ecommerce-spacecraft.png", // Use actual image paths
   },
   {
-    title: "Project Title 3",
-    description: "A brief description of Project 3.",
-    gitHubLink: "https://github.com/yourusername/project3",
-    actualLink: "", // Leave empty if no live link
-    imageSrc: "/path/to/your/project3-image.jpg", // Use actual image paths
+    title: "Custommike - E-commerce (Support)",
+    description:
+      "Supporting on API services for Product listing page, Sign up and Sign in services.",
+    gitHubLink: "https://github.com/JLezzzzz/seal-over-the-wall-frontEnd",
+    gitHubBackendLink: "https://github.com/JLezzzzz/seal-over-the-wall-backEnd",
+    actualLink: "https://seal-over-the-walls.vercel.app/",
+    imageSrc: "/assets/project-ecommerce-custommike.png", // Use actual image paths
   },
-
   // Add more projects here
 ];
 

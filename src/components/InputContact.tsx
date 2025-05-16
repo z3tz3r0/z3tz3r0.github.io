@@ -4,35 +4,47 @@ import { Textarea } from "@/components/ui/textarea";
 import React from "react";
 
 interface InputContactProps {
-    type: string;
-    label: string;
-    value?: string;
-    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    className?: string;
+  type: string;
+  label: string;
+  name: string;
+  value?: string;
+  onChange?: (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
+  ) => void;
+  className?: string;
 }
 
 const InputContact = ({
-    type,
-    label,
-    value,
-    onChange,
-    className,
+  type,
+  label,
+  name,
+  value,
+  onChange,
+  className,
 }: InputContactProps) => {
-    return (
-        <div className={`flex flex-col gap-2 mb-8 ${className}`}>
-            <Label htmlFor={label.toLowerCase()}>{label}</Label>
-            {type !== "textarea" ? (
-                <Input
-                    type={type}
-                    value={value}
-                    onChange={onChange}
-                    id={label.toLowerCase()}
-                />
-            ) : (
-                <Textarea value={value} id={label.toLowerCase()} />
-            )}
-        </div>
-    );
+  return (
+    <div className={`flex flex-col gap-2 mb-8 ${className}`}>
+      <Label htmlFor={name}>{label}</Label>
+      {type !== "textarea" ? (
+        <Input
+          type={type}
+          id={name}
+          name={name}
+          value={value}
+          onChange={onChange}
+        />
+      ) : (
+        <Textarea
+          id={label.toLowerCase()}
+          name={name}
+          value={value}
+          onChange={onChange}
+        />
+      )}
+    </div>
+  );
 };
 
 export default InputContact;
