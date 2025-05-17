@@ -23,7 +23,8 @@ const projects: Project[] = [
     gitHubLink: "https://github.com/z3tz3r0/jsd9-pheonix_wicianburi-frontend",
     gitHubBackendLink:
       "https://github.com/z3tz3r0/jsd9-pheonix_wicianburi_grill-backend",
-    actualLink: "https://jsd9-pheonix-wicianburi-frontend.vercel.app/",
+    actualLink:
+      "https://allrice-inc-project-frontend-z3tz3r0s-projects.vercel.app/",
     imageSrc: "/assets/project-ecommerce-allrice.png", // Use actual image paths
   },
   {

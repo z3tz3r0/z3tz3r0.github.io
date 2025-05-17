@@ -4,8 +4,10 @@ import { Loader2 } from "lucide-react";
 import React, { useState } from "react";
 import { Resend } from "resend";
 import { toast } from "sonner";
+import HorizontalLine from "../components/HorizontalLine";
 import InputContact from "../components/InputContact";
 import SubTopic from "../components/SubTopic";
+import Topic from "../components/Topic";
 import Layout from "../containers/Layout";
 
 const Contact = () => {
@@ -55,9 +57,14 @@ const Contact = () => {
     }
     setIsSubmitting(true);
     try {
-      const { error } = await resend.emails.send({
+      console.log("Resend instance:", resend);
+      console.log("Attempting to send email with Resend...");
+
+      // Create the email data object
+
+      const res = await resend.emails.send({
         from: "Your Website Contact Form <onboarding@resend.dev>",
-        to: "kittipan.wang@gmail.com",
+        to: ["kittipan.wang@gmail.com"],
         subject: `New contact Form Submission from ${emailForm.name}`,
         replyTo: emailForm.email,
         react: (
@@ -69,13 +76,8 @@ const Contact = () => {
           />
         ),
       });
+      console.log(res);
 
-      if (error) {
-        toast.error("Error", {
-          description: error.message || "An unkown error occurred.",
-        });
-        return;
-      }
       toast.success("Success", {
         description: "Thank you for reaching out. I'll get back to you soon.",
       });
@@ -93,7 +95,21 @@ const Contact = () => {
 
   return (
     <Layout id="contact" className="bg-white/5">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-xl mx-auto text-center">
+        {" "}
+        {/* Added text-center for intro/outro */}
+        <Topic>Contact</Topic>
+        <SubTopic>I'd Love to Hear From You</SubTopic>
+        <div className="mb-10">
+          {" "}
+          {/* Wrapper for HorizontalLine to control its margin if needed */}
+          <HorizontalLine />
+        </div>
+        <p className="text-lg text-white/80 mb-10">
+          Whether you have a project idea, a question, or just want to connect,
+          feel free to reach out. I'm always open to discussing new
+          opportunities and collaborations.
+        </p>
         <SubTopic>Let's Contact</SubTopic>
         <form onSubmit={handleSubmit}>
           <InputContact
@@ -133,6 +149,10 @@ const Contact = () => {
             </Button>
           )}
         </form>
+        <p className="text-sm text-white/70 mt-12">
+          I typically respond within 24-48 hours. You can also find me on my
+          social platforms linked in the footer.
+        </p>
       </div>
     </Layout>
   );
