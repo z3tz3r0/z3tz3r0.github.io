@@ -23,7 +23,7 @@ const Hero = () => {
               </Button>
             </a>
             <a
-              href="https://drive.google.com/file/d/15SPB_5z-Sdgwr6Reek5ySegv4zBAOzIC/view?usp=sharing"
+              href="https://drive.google.com/file/d/1tzYA1_zxCX5mN-GyTFTSlnXa5eUHLYMN/view?usp=sharing"
               target="_blank"
             >
               <Button variant="ghost" className="py-6 px-10 text-lg">
