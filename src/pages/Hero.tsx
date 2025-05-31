@@ -23,11 +23,11 @@ const Hero = () => {
               </Button>
             </a>
             <a
-              href="https://drive.google.com/file/d/1tzYA1_zxCX5mN-GyTFTSlnXa5eUHLYMN/view?usp=sharing"
-              target="_blank"
+              href="/CV_Kittipan Wangsakarn.pdf"
+              download="CV-Kittipan_Wangsakarn.pdf"
             >
               <Button variant="ghost" className="py-6 px-10 text-lg">
-                View CV
+                Download CV
               </Button>
             </a>
           </div>
