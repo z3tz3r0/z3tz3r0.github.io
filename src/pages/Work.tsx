@@ -12,7 +12,8 @@ interface Project {
   gitHubLink: string;
   gitHubBackendLink?: string;
   actualLink: string;
-  imageSrc: string; // Path to the project image
+  imageSrcBefore: string; // Path to the project image
+  imageSrcAfter?: string; // Path to the project image
 }
 
 const projects: Project[] = [
@@ -25,15 +26,7 @@ const projects: Project[] = [
       "https://github.com/z3tz3r0/jsd9-pheonix_wicianburi_grill-backend",
     actualLink:
       "https://allrice-inc-project-frontend-z3tz3r0s-projects.vercel.app/",
-    imageSrc: "/assets/project-ecommerce-allrice.png", // Use actual image paths
-  },
-  {
-    title: "Spacecraft E-commerce App (Full Stack)",
-    description:
-      "A full-stack e-commerce proof-of-concept application for Browse and managing a simulated inventory of spacecraft.",
-    gitHubLink: "https://github.com/z3tz3r0/ecommerce-space-craft",
-    actualLink: "https://ecommerce-space-craft.vercel.app",
-    imageSrc: "/assets/project-ecommerce-spacecraft.png", // Use actual image paths
+    imageSrcBefore: "/assets/project-ecommerce-allrice.png", // Use actual image paths
   },
   {
     title: "Custommike - E-commerce (Support)",
@@ -42,13 +35,29 @@ const projects: Project[] = [
     gitHubLink: "https://github.com/JLezzzzz/seal-over-the-wall-frontEnd",
     gitHubBackendLink: "https://github.com/JLezzzzz/seal-over-the-wall-backEnd",
     actualLink: "https://seal-over-the-walls.vercel.app/",
-    imageSrc: "/assets/project-ecommerce-custommike.png", // Use actual image paths
+    imageSrcBefore: "/assets/project-ecommerce-custommike.png", // Use actual image paths
+  },
+  {
+    title: "CT frontend redesign",
+    description: "Redesign landing page for www.chareontut.com website",
+    gitHubLink: "https://github.com/z3tz3r0/ct-redesign-frontend",
+    actualLink: "https://ct-redesign-frontend.vercel.app/",
+    imageSrcBefore: "/assets/project-static-ct-before.png", // Use actual image paths
+    imageSrcAfter: "/assets/project-static-ct.png",
+  },
+  {
+    title: "Spacecraft E-commerce App (Full Stack)",
+    description:
+      "A full-stack e-commerce proof-of-concept application for Browse and managing a simulated inventory of spacecraft.",
+    gitHubLink: "https://github.com/z3tz3r0/ecommerce-space-craft",
+    actualLink: "https://ecommerce-space-craft.vercel.app",
+    imageSrcBefore: "/assets/project-ecommerce-spacecraft.png", // Use actual image paths
   },
   // Add more projects here
 ];
 
 const Work = () => {
-  const initialProjectvisibility = 3;
+  const initialProjectvisibility = 4;
   const [visibleCount, setVisibleCount] = useState(initialProjectvisibility);
 
   // Determine which projects to display
@@ -56,16 +65,20 @@ const Work = () => {
 
   // Handle button click to show more)
   const handleShowMore = () => {
-    setVisibleCount((prev) => prev + 3);
+    console.log(visibleCount);
+    console.log(projects.length);
+    if (visibleCount > projects.length) {
+      setVisibleCount(3);
+    } else {
+      setVisibleCount((prev) => prev + 3);
+    }
   };
   return (
     <Layout id="work" className="bg-white/5">
       <div className="max-w-7xl mx-auto">
         <Topic>Work</Topic>
         <SubTopic>Lastest Project</SubTopic>
-
         <HorizontalLine />
-
         <div
           className="grid grid-cols-1 md:grid-cols-2 gap-8 my-12"
           id="project-container"
@@ -80,18 +93,18 @@ const Work = () => {
               gitHubLink={project.gitHubLink}
               gitHubBackendLink={project.gitHubBackendLink}
               actualLink={project.actualLink}
-              imageSrc={project.imageSrc}
+              imageSrcBefore={project.imageSrcBefore}
+              imageSrcAfter={project.imageSrcAfter}
             />
           ))}
         </div>
-
-        {projects.length <= initialProjectvisibility || (
+        {visibleCount !== projects.length && (
           <Button
             variant="outline"
             className="py-6 px-10 text-lg"
             onClick={handleShowMore}
           >
-            See More
+            {visibleCount < projects.length ? "See More" : "See Less"}
           </Button>
         )}
       </div>

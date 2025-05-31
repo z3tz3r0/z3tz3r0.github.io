@@ -1,62 +1,63 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: 'Helvetica', sans-serif;
-    padding: 1rem;
+  font-family: "Helvetica", sans-serif;
+  padding: 1rem;
+  background-color: white;
 }
 
 header {
-    background-image: url(./assets/pattern.webp);
-    object-fit: fill;
-    object-position: center;
+  background-image: url(./assets/pattern.webp);
+  object-fit: fill;
+  object-position: center;
 }
 
 .title {
-    text-align: center;
-    margin-top: 5rem;
-    font-size: 6.25rem;
-    font-weight: bold;
-    color: khaki;
-    text-align: center;
-    margin: 4.1875rem;
+  text-align: center;
+  margin-top: 5rem;
+  font-size: 6.25rem;
+  font-weight: bold;
+  color: khaki;
+  text-align: center;
+  margin: 4.1875rem;
 }
 
 /* Middle part */
 
 .item-title {
-    font-size: 2rem;
-    font-weight: bold;
-    color: white;
-    margin: 2.5rem 0;
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  margin: 2.5rem 0;
 }
 
 #brush {
-    background-color: mediumspringgreen;
+  background-color: mediumspringgreen;
 }
 
 #frame {
-    background-color: lightcoral;
+  background-color: lightcoral;
 }
 
 #paint {
-    background-color: skyblue;
+  background-color: skyblue;
 }
 
 .item-name {
-    font-size: 1.25rem;
-    margin: 1.25rem 0;
+  font-size: 1.25rem;
+  margin: 1.25rem 0;
 }
 
 .item-description {
-    font-size: 1rem;
-    margin: 1.25rem 0;
+  font-size: 1rem;
+  margin: 1.25rem 0;
 }
 
 .price {
-    font-weight: bold;
-    color: blue;
+  font-weight: bold;
+  color: blue;
 }

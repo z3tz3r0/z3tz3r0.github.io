@@ -1,142 +1,142 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap");
 
 :root {
-    --ff-sans: "IBM Plex Sans", serif;
-    --ff-mono: "IBM Plex Sans", serif;
-    --clr-background: hsl(0, 0%, 96%);
-    --clr-border: #393939;
-    --clr-font: #161616;
-    --header__nav-height: 3rem;
+  --ff-sans: "IBM Plex Sans", serif;
+  --ff-mono: "IBM Plex Sans", serif;
+  --clr-background: hsl(0, 0%, 96%);
+  --clr-border: #393939;
+  --clr-font: #161616;
+  --header__nav-height: 3rem;
 
-    --diagnose: 1px solid red;
+  --diagnose: 1px solid red;
 }
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html {
-    font-family: var(--ff-sans);
+  font-family: var(--ff-sans);
 }
 
 body {
-    min-height: 100vh;
-    min-height: 100dvh;
-    display: grid;
-    grid-template-columns: auto 1fr;
-    grid-template-rows: auto 1fr;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: grid;
+  background-color: var(--clr-background);
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr;
 }
 
 .header__nav {
-    grid-row: 1/2;
-    grid-column: 1/3;
+  grid-row: 1/2;
+  grid-column: 1/3;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: var(--header__nav-height);
+  background-color: var(--clr-font);
+  border: 1px solid var(--clr-border);
+  padding-inline: 1rem;
+
+  nav {
     display: flex;
     align-items: center;
-    width: 100%;
-    height: var(--header__nav-height);
-    background-color: var(--clr-font);
-    border: 1px solid var(--clr-border);
-    padding-inline: 1rem;
+    gap: 1rem;
+  }
 
-    nav {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-    }
+  nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: 700;
+  }
 
-    nav a {
-        text-decoration: none;
-        color: white;
-        font-weight: 700;
-    }
-
-    nav button {
-        width: 2rem;
-        height: inherit;
-        fill: white;
-        padding: 0.25rem;
-        cursor: pointer;
-        border: var(--diagnose);
-    }
+  nav button {
+    width: 2rem;
+    height: inherit;
+    fill: white;
+    padding: 0.25rem;
+    cursor: pointer;
+    border: var(--diagnose);
+  }
 }
 
 button {
-    background-color: transparent;
-    border: none;
+  background-color: transparent;
+  border: none;
 }
 
 /* sidebar */
 
 .sidebar {
-    grid-column: 1/2;
-    grid-row: 2/3;
-    border: 1px solid red;
-    width: 16rem;
+  grid-column: 1/2;
+  grid-row: 2/3;
+  border: 1px solid red;
+  width: 16rem;
 }
 
 .sidebar__menu {
-    list-style: none;
+  list-style: none;
 }
 
 .sidebar__btn {
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    cursor: pointer;
-    width: 100%;
-    padding: 0.5rem 1rem;
-    color: var(--clr-font);
-    text-decoration: none;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  cursor: pointer;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  color: var(--clr-font);
+  text-decoration: none;
 }
 
 .sidebar__btn:hover {
-    background-color: #e9e9e9;
+  background-color: #e9e9e9;
 }
 
 .sidebar__btn svg {
-    width: 1.5rem;
-    height: 1.5rem;
-    margin-right: 1rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 1rem;
 }
 
 .sidebar__btn span {
-    font-weight: 700;
+  font-weight: 700;
 }
 
 /* main */
 .main__section {
-    grid-column: 2/3;
-    height: 100%;
-    background-color: var(--clr-background);
+  grid-column: 2/3;
+  height: 100%;
+  background-color: var(--clr-background);
 }
 
 .section__hero * {
-    padding-left: 1rem;
+  padding-left: 1rem;
 }
 
 .content__hero_title {
-    display: flex;
-    align-items: flex-end;
-    height: 15rem;
-    font-size: 3rem;
-    font-weight: 300;
-    background-color: black;
-    color: white;
-    padding-bottom: 2rem;
+  display: flex;
+  align-items: flex-end;
+  height: 15rem;
+  font-size: 3rem;
+  font-weight: 300;
+  background-color: black;
+  color: white;
+  padding-bottom: 2rem;
 }
 
 .content__hero_desc {
-    margin-top: 2rem;
-    font-size: 1.25rem;
-    line-height: 1.5;
-    color: var(--clr-font);
+  margin-top: 2rem;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  color: var(--clr-font);
 }
-
 
 /* Utility */
 
 .hide {
-    display: none;
+  display: none;
 }

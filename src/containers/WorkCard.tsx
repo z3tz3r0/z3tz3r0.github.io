@@ -2,13 +2,20 @@ import SimpleIconDisplay from "@/components/SimpleIconDisplay";
 import { Link } from "lucide-react";
 import { siGithub } from "simple-icons";
 
+import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+} from "@/components/ui/resizable";
+
 interface WorkCardProps {
   title: string;
   description: string;
   gitHubLink: string;
   gitHubBackendLink?: string;
   actualLink: string;
-  imageSrc: string;
+  imageSrcBefore: string;
+  imageSrcAfter?: string;
 }
 
 const WorkCard: React.FC<WorkCardProps> = ({
@@ -17,7 +24,8 @@ const WorkCard: React.FC<WorkCardProps> = ({
   gitHubLink,
   gitHubBackendLink,
   actualLink,
-  imageSrc,
+  imageSrcBefore,
+  imageSrcAfter,
 }) => {
   return (
     // Container for the card, relative for absolute positioning of overlay
@@ -25,13 +33,33 @@ const WorkCard: React.FC<WorkCardProps> = ({
       {" "}
       {/* Adjust height as needed */}
       {/* Project Image */}
-      <img
-        src={imageSrc}
-        alt={`${title} project screenshot`}
-        className="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
-      />
+      {imageSrcAfter ? (
+        <ResizablePanelGroup direction="horizontal" className="h-full w-full">
+          <ResizablePanel defaultSize={50} className="overflow-hidden">
+            <img
+              src={imageSrcBefore}
+              alt={`${title} - Before`}
+              className="w-full h-full object-cover object-center"
+            />
+          </ResizablePanel>
+          <ResizableHandle withHandle />
+          <ResizablePanel defaultSize={50} className="overflow-hidden">
+            <img
+              src={imageSrcAfter}
+              alt={`${title} - After`}
+              className="w-full h-full object-cover object-center"
+            />
+          </ResizablePanel>
+        </ResizablePanelGroup>
+      ) : (
+        <img
+          src={imageSrcBefore}
+          alt={`${title} project screenshot`}
+          className="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
+        />
+      )}
       {/* Overlay and Content */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
         {/* Title and Description */}
         <h3 className="text-white text-xl font-bold mb-2">{title}</h3>
         <p className="text-white/80 text-sm mb-4">{description}</p>
