@@ -2,59 +2,10 @@ import HorizontalLine from "@/components/HorizontalLine";
 import SubTopic from "@/components/SubTopic";
 import { Button } from "@/components/ui/button";
 import WorkCard from "@/containers/WorkCard";
+import { projects } from "@/data/projects";
 import { useState } from "react";
 import Topic from "../components/Topic";
 import Layout from "../containers/Layout";
-
-interface Project {
-  title: string;
-  description: string;
-  gitHubLink: string;
-  gitHubBackendLink?: string;
-  actualLink: string;
-  imageSrcBefore: string; // Path to the project image
-  imageSrcAfter?: string; // Path to the project image
-}
-
-const projects: Project[] = [
-  {
-    title: "All Rice inc. - E-commerce (Full Stack)",
-    description:
-      "An e-commerce website specializing in selling Thailand rice varieties. It's built using React and Vite, styled with Tailwind CSS, and utilizes shadcn/ui for components.",
-    gitHubLink: "https://github.com/z3tz3r0/jsd9-pheonix_wicianburi-frontend",
-    gitHubBackendLink:
-      "https://github.com/z3tz3r0/jsd9-pheonix_wicianburi_grill-backend",
-    actualLink:
-      "https://allrice-inc-project-frontend-z3tz3r0s-projects.vercel.app/",
-    imageSrcBefore: "/assets/project-ecommerce-allrice.png", // Use actual image paths
-  },
-  {
-    title: "Custommike - E-commerce (Support)",
-    description:
-      "Supporting on API services for Product listing page, Sign up and Sign in services.",
-    gitHubLink: "https://github.com/JLezzzzz/seal-over-the-wall-frontEnd",
-    gitHubBackendLink: "https://github.com/JLezzzzz/seal-over-the-wall-backEnd",
-    actualLink: "https://seal-over-the-walls.vercel.app/",
-    imageSrcBefore: "/assets/project-ecommerce-custommike.png", // Use actual image paths
-  },
-  {
-    title: "CT frontend redesign",
-    description: "Redesign landing page for www.chareontut.com website",
-    gitHubLink: "https://github.com/z3tz3r0/ct-redesign-frontend",
-    actualLink: "https://ct-redesign-frontend.vercel.app/",
-    imageSrcBefore: "/assets/project-static-ct-before.png", // Use actual image paths
-    imageSrcAfter: "/assets/project-static-ct.png",
-  },
-  {
-    title: "Spacecraft E-commerce App (Full Stack)",
-    description:
-      "A full-stack e-commerce proof-of-concept application for Browse and managing a simulated inventory of spacecraft.",
-    gitHubLink: "https://github.com/z3tz3r0/ecommerce-space-craft",
-    actualLink: "https://ecommerce-space-craft.vercel.app",
-    imageSrcBefore: "/assets/project-ecommerce-spacecraft.png", // Use actual image paths
-  },
-  // Add more projects here
-];
 
 const Work = () => {
   const initialProjectvisibility = 4;
