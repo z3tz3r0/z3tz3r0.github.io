@@ -1,52 +1,57 @@
+import type { ChangeEvent, ReactElement } from "react";
 import { Input, TextArea } from "@heroui/react";
-import type React from "react";
+
+const TEXTAREA_ROWS = 4;
 
 interface InputContactProps {
-  type: string;
+  className?: string;
   label: string;
   name: string;
-  value?: string;
   onChange?: (
-    e:
-      | React.ChangeEvent<HTMLInputElement>
-      | React.ChangeEvent<HTMLTextAreaElement>
+    event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>
   ) => void;
-  className?: string;
+  type: string;
+  value?: string;
 }
 
-function InputContact({
-  type,
+const InputContact = ({
+  className,
   label,
   name,
-  value,
   onChange,
-  className,
-}: InputContactProps) {
+  type,
+  value,
+}: InputContactProps): ReactElement => {
+  let inputElement: ReactElement = (
+    <Input
+      aria-label={label}
+      id={name}
+      name={name}
+      onChange={onChange}
+      placeholder={label}
+      type={type}
+      value={value}
+    />
+  );
+  if (type === "textarea") {
+    inputElement = (
+      <TextArea
+        aria-label={label}
+        id={label.toLowerCase()}
+        name={name}
+        onChange={onChange}
+        placeholder={label}
+        rows={TEXTAREA_ROWS}
+        value={value}
+      />
+    );
+  }
+
   return (
-    <div className={`flex flex-col gap-2 mb-8 ${className}`}>
-      {type !== "textarea" ? (
-        <Input
-          type={type}
-          id={name}
-          name={name}
-          aria-label={label}
-          placeholder={label}
-          value={value}
-          onChange={onChange}
-        />
-      ) : (
-        <TextArea
-          id={label.toLowerCase()}
-          name={name}
-          aria-label={label}
-          placeholder={label}
-          value={value}
-          onChange={onChange}
-          rows={4}
-        />
-      )}
+    <div className={`flex flex-col gap-2 mb-8 ${className ?? ""}`}>
+      {inputElement}
     </div>
   );
-}
+};
 
-export default InputContact;
+export { InputContact };

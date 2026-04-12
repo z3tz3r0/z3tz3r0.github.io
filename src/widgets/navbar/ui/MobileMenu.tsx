@@ -1,110 +1,62 @@
-import { useRef, useEffect } from "react";
+import { HIDDEN_STYLE, MOBILE_MENU_INITIAL_STYLE } from "@/shared/lib/styles";
+import { useBodyScrollLock, useOutsideClick } from "@/widgets/navbar/model/useMobileMenuEffects";
+import { useCallback, useEffect, useRef } from "react";
+import type { ReactElement } from "react";
+import { ThemeSwitcher } from "@/features/theme-switcher/ui/ThemeSwitcher";
+import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
 import { useUIStore } from "@/shared/store/useUIStore";
-import ThemeSwitcher from "@/features/theme-switcher/ui/ThemeSwitcher";
+
+const MENU_ANIM_DURATION = 0.3;
+const ITEM_ANIM_DURATION = 0.25;
+const ITEM_OFFSET_Y = 20;
+const ITEM_STAGGER = 0.05;
+const ITEM_DELAY = 0.1;
 
 const NAV_LINKS = [
-  { href: "#", label: "Home" },
+  { href: "#main-content", label: "Home" },
   { href: "#work", label: "Work" },
   { href: "#about", label: "About" },
   { href: "#contact", label: "Contact" },
 ];
 
-function MobileMenu() {
-  const { mobileMenuOpen, closeMobileMenu } = useUIStore();
+const MobileMenu = (): ReactElement => {
+  const { closeMobileMenu, mobileMenuOpen } = useUIStore();
   const menuRef = useRef<HTMLDivElement>(null);
   const itemsRef = useRef<HTMLLIElement[]>([]);
-  const tlRef = useRef<gsap.core.Timeline | null>(null);
+  const timelineRef = useRef<gsap.core.Timeline | null>(null);
 
-  // Build timeline once
   useGSAP(() => {
-    if (!menuRef.current) return;
-
-    const tl = gsap.timeline({
-      paused: true,
-      defaults: { ease: "power2.out" },
-    });
-
-    tl.fromTo(
-      menuRef.current,
-      { height: 0, autoAlpha: 0 },
-      { height: "auto", autoAlpha: 1, duration: 0.3 },
-    );
-
-    tl.fromTo(
-      itemsRef.current,
-      { y: 20, autoAlpha: 0 },
-      { y: 0, autoAlpha: 1, stagger: 0.05, duration: 0.25 },
-      "<0.1",
-    );
-
-    tlRef.current = tl;
+    if (!menuRef.current) { return; }
+    const timeline = gsap.timeline({ defaults: { ease: "power2.out" }, paused: true });
+    timeline.fromTo(menuRef.current, { autoAlpha: 0, height: 0 }, { autoAlpha: 1, duration: MENU_ANIM_DURATION, height: "auto" });
+    timeline.fromTo(itemsRef.current, { autoAlpha: 0, y: ITEM_OFFSET_Y }, { autoAlpha: 1, duration: ITEM_ANIM_DURATION, stagger: ITEM_STAGGER, y: 0 }, `<${ITEM_DELAY}`);
+    timelineRef.current = timeline;
   }, { scope: menuRef });
 
-  // Play/reverse based on state
   useEffect(() => {
-    if (!tlRef.current) return;
-    if (mobileMenuOpen) {
-      tlRef.current.play();
-    } else {
-      tlRef.current.reverse();
-    }
+    if (!timelineRef.current) { return; }
+    if (mobileMenuOpen) { timelineRef.current.play(); } else { timelineRef.current.reverse(); }
   }, [mobileMenuOpen]);
 
-  // Lock body scroll when open
-  useEffect(() => {
-    if (mobileMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [mobileMenuOpen]);
+  useBodyScrollLock(mobileMenuOpen);
+  useOutsideClick(mobileMenuOpen, menuRef, closeMobileMenu);
 
-  // Close on outside click
-  useEffect(() => {
-    if (!mobileMenuOpen) return;
-
-    function handleClick(e: MouseEvent) {
-      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
-        closeMobileMenu();
-      }
-    }
-
-    document.addEventListener("mousedown", handleClick);
-    return () => document.removeEventListener("mousedown", handleClick);
-  }, [mobileMenuOpen, closeMobileMenu]);
+  const setItemRef = useCallback((index: number) => (element: HTMLLIElement | null): void => {
+    if (element) { itemsRef.current[index] = element; }
+  }, []);
 
   return (
-    <div
-      ref={menuRef}
-      className="md:hidden overflow-hidden border-t border-border/10"
-      style={{ height: 0, visibility: "hidden" }}
-    >
+    <div className="md:hidden overflow-hidden border-t border-border/10" ref={menuRef} style={MOBILE_MENU_INITIAL_STYLE}>
       <ul className="flex flex-col gap-1 px-4 py-4">
-        {NAV_LINKS.map((link, i) => (
-          <li
-            key={link.href}
-            ref={(el) => { if (el) itemsRef.current[i] = el; }}
-            style={{ visibility: "hidden" }}
-          >
-            <a
-              href={link.href}
-              onClick={closeMobileMenu}
-              className="block py-3 px-2 text-lg rounded-md hover:bg-muted/10 transition-colors"
-            >
+        {NAV_LINKS.map((link, index) => (
+          <li key={link.href} ref={setItemRef(index)} style={HIDDEN_STYLE}>
+            <a className="block py-3 px-2 text-lg rounded-md hover:bg-muted/10 transition-colors" href={link.href} onClick={closeMobileMenu}>
               {link.label}
             </a>
           </li>
         ))}
-        <li
-          ref={(el) => { if (el) itemsRef.current[NAV_LINKS.length] = el; }}
-          style={{ visibility: "hidden" }}
-          className="pt-2 border-t border-border/10"
-        >
+        <li className="pt-2 border-t border-border/10" ref={setItemRef(NAV_LINKS.length)} style={HIDDEN_STYLE}>
           <div className="flex items-center gap-3 py-2 px-2">
             <span className="text-sm text-muted-foreground">Theme</span>
             <ThemeSwitcher />
@@ -113,6 +65,6 @@ function MobileMenu() {
       </ul>
     </div>
   );
-}
+};
 
-export default MobileMenu;
+export { MobileMenu };

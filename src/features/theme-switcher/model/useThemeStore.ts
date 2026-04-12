@@ -1,55 +1,53 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-export type ThemeName = "default" | "luxury" | "editorial" | "cyberpunk" | "minimal";
+type ThemeName = "default" | "luxury" | "editorial" | "cyberpunk" | "minimal";
 
-/** Themes that use a light background */
-const LIGHT_THEMES: ThemeName[] = ["minimal"];
+const LIGHT_THEMES = new Set<ThemeName>(["minimal"]);
+const THEME_TRANSITION_MS = 500;
 
 interface ThemeStore {
-  theme: ThemeName;
-  setTheme: (theme: ThemeName) => void;
-  /** Call once on app mount to apply persisted theme class to <html> */
   hydrate: () => void;
+  setTheme: (theme: ThemeName) => void;
+  theme: ThemeName;
 }
 
-function applyThemeClass(theme: ThemeName, withTransition = false) {
+const applyThemeClass = (theme: ThemeName, withTransition = false): void => {
   const root = document.documentElement;
 
-  // Enable CSS transitions only during active theme switch
   if (withTransition) {
     root.classList.add("theme-transitioning");
-    setTimeout(() => root.classList.remove("theme-transitioning"), 500);
+    setTimeout(() => { root.classList.remove("theme-transitioning"); }, THEME_TRANSITION_MS);
   }
 
-  // Remove existing theme-* classes
-  root.className = root.className.replace(/\btheme-\S+/g, "").trim();
+  root.className = root.className.replaceAll(/\btheme-\S+/g, "").trim();
 
-  // Apply theme class
   if (theme !== "default") {
     root.classList.add(`theme-${theme}`);
   }
 
-  // Toggle dark/light mode based on theme
-  if (LIGHT_THEMES.includes(theme)) {
+  if (LIGHT_THEMES.has(theme)) {
     root.classList.remove("dark");
   } else if (!root.classList.contains("dark")) {
     root.classList.add("dark");
   }
-}
+};
 
-export const useThemeStore = create<ThemeStore>()(
+const useThemeStore = create<ThemeStore>()(
   persist(
     (set, get) => ({
-      theme: "default",
-      setTheme: (theme) => {
+      hydrate: (): void => {
+        applyThemeClass(get().theme, false);
+      },
+      setTheme: (theme: ThemeName): void => {
         applyThemeClass(theme, true);
         set({ theme });
       },
-      hydrate: () => {
-        applyThemeClass(get().theme, false);
-      },
+      theme: "default",
     }),
     { name: "portfolio-theme" },
   ),
 );
+
+export type { ThemeName };
+export { useThemeStore };

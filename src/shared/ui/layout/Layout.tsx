@@ -1,17 +1,18 @@
-import type React from "react";
+import type { ReactElement, ReactNode } from "react";
 
 interface LayoutProps {
-  id?: string;
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
+  id?: string;
 }
 
-function Layout({ id, children, className }: LayoutProps) {
+const Layout = ({ id, children, className }: LayoutProps): ReactElement => {
+  const resolvedClassName = className ?? "";
   return (
-    <div id={id} className={`p-4 py-16 text-center ${className ?? ""}`}>
+    <div id={id} className={`p-4 py-16 text-center ${resolvedClassName}`}>
       {children}
     </div>
   );
-}
+};
 
-export default Layout;
+export { Layout };

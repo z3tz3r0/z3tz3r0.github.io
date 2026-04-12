@@ -1,21 +1,23 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import gsap from 'gsap'
-import { useGSAP } from '@gsap/react'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { Flip } from 'gsap/Flip'
-import { initWebVitals } from '@/shared/lib/analytics'
-import '../app/styles/index.css'
-import App from './App.tsx'
+// oxlint-disable-next-line import/no-unassigned-import -- CSS import required by Vite
+import "@/app/styles/index.css";
+import { App } from "@/app/App";
+import { Flip } from "gsap/Flip";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import { gsap } from "gsap";
+import { initWebVitals } from "@/shared/lib/analytics";
+import { useGSAP } from "@gsap/react";
 
-// Register GSAP plugins once at top level
-gsap.registerPlugin(useGSAP, ScrollTrigger, Flip)
+gsap.registerPlugin(useGSAP, ScrollTrigger, Flip);
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-)
+const rootElement = document.getElementById("root");
+if (rootElement) {
+  createRoot(rootElement).render(
+    <StrictMode>
+      <App />
+    </StrictMode>,
+  );
+}
 
-// Defer analytics after hydration (per Vercel best practice: bundle-defer-third-party)
-initWebVitals()
+initWebVitals();

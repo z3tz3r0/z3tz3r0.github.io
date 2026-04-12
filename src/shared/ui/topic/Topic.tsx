@@ -1,16 +1,17 @@
-import type React from "react";
+import type { ReactElement, ReactNode } from "react";
 
 interface TopicProps {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
 }
 
-function Topic({ children, className }: TopicProps) {
+const Topic = ({ children, className }: TopicProps): ReactElement => {
+  const resolvedClassName = className ?? "";
   return (
-    <span className={`text-sm font-semibold uppercase tracking-widest text-accent mb-2 block ${className ?? ""}`}>
+    <span className={`text-sm font-semibold uppercase tracking-widest text-accent mb-2 block ${resolvedClassName}`}>
       {children}
     </span>
   );
-}
+};
 
-export default Topic;
+export { Topic };

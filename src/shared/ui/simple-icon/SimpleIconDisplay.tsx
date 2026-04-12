@@ -1,24 +1,24 @@
+import type { ReactElement } from "react";
 import type { SimpleIcon } from "simple-icons";
 
 interface SimpleIconDisplayProps {
+  fill?: string;
   icon: SimpleIcon;
   size?: number;
 }
 
-function SimpleIconDisplay({ icon, size, ...props }: SimpleIconDisplayProps) {
-  return (
+const SimpleIconDisplay = ({ icon, size, fill = "currentColor" }: SimpleIconDisplayProps): ReactElement => (
     <svg
-      role="img"
-      width={size}
+      aria-hidden="true"
+      fill={fill}
       height={size}
+      role="img"
       viewBox="0 0 24 24"
-      fill="currentColor"
+      width={size}
       xmlns="http://www.w3.org/2000/svg"
-      {...props}
     >
       <path d={icon.path} />
     </svg>
   );
-}
 
-export default SimpleIconDisplay;
+export { SimpleIconDisplay };

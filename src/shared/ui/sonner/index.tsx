@@ -1,20 +1,20 @@
-import { Toaster as Sonner, type ToasterProps } from "sonner"
+import type { CSSProperties, ReactElement } from "react";
+import { Toaster as Sonner } from "sonner";
+import type { ToasterProps } from "sonner";
 
-function Toaster({ ...props }: ToasterProps) {
-  return (
+const SONNER_STYLE: CSSProperties = {
+  "--normal-bg": "var(--popover)",
+  "--normal-border": "var(--border)",
+  "--normal-text": "var(--popover-foreground)",
+} as CSSProperties;
+
+const Toaster = (props: ToasterProps): ReactElement => (
     <Sonner
-      theme="dark"
       className="toaster group"
-      style={
-        {
-          "--normal-bg": "var(--popover)",
-          "--normal-text": "var(--popover-foreground)",
-          "--normal-border": "var(--border)",
-        } as React.CSSProperties
-      }
-      {...props}
+      richColors={props.richColors}
+      style={SONNER_STYLE}
+      theme="dark"
     />
-  )
-}
+  );
 
-export { Toaster }
+export { Toaster };

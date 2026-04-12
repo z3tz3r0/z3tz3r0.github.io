@@ -1,46 +1,54 @@
-import ProgrammingLanguage from "@/widgets/skills/ui/ProgrammingLanguage";
-import SubTopic from "@/shared/ui/subtopic/SubTopic";
-import Topic from "@/shared/ui/topic/Topic";
-import Layout from "@/shared/ui/layout/Layout";
+import type { CSSProperties, ReactElement } from "react";
+import { Layout } from "@/shared/ui/layout/Layout";
+import { ProgrammingLanguage } from "@/widgets/skills/ui/ProgrammingLanguage";
+import { SubTopic } from "@/shared/ui/subtopic/SubTopic";
+import { Topic } from "@/shared/ui/topic/Topic";
 import { useGsapScrollReveal } from "@/shared/hooks/useGsapScrollReveal";
 
+const SKILLS_STAGGER = 0.08;
+
+const SKILLS_GRID_STYLE: CSSProperties = {
+  gridTemplateColumns: "var(--layout-skills-cols)",
+};
+
 interface Skill {
-  label: string;
-  deviconSvgPath: string;
   className?: string;
+  deviconSvgPath: string;
+  id: string;
+  label: string;
 }
 
 const skills: Skill[] = [
-  { label: "HTML", deviconSvgPath: "html5/html5-original.svg" },
-  { label: "CSS", deviconSvgPath: "css3/css3-original.svg" },
-  { label: "JavaScript", deviconSvgPath: "javascript/javascript-original.svg" },
-  { label: "TypeScript", deviconSvgPath: "typescript/typescript-original.svg" },
-  { label: "React", deviconSvgPath: "react/react-original.svg" },
-  { label: "TailwindCSS", deviconSvgPath: "tailwindcss/tailwindcss-original.svg" },
-  { label: "Nodejs", deviconSvgPath: "nodejs/nodejs-original-wordmark.svg" },
-  { label: "Expressjs", deviconSvgPath: "express/express-original.svg", className: "text-white" },
-  { label: "MongoDB", deviconSvgPath: "mongodb/mongodb-original.svg" },
-  { label: "mongoose", deviconSvgPath: "mongoose/mongoose-original-wordmark.svg" },
+  { deviconSvgPath: "html5/html5-original.svg", id: "html", label: "HTML" },
+  { deviconSvgPath: "css3/css3-original.svg", id: "css", label: "CSS" },
+  { deviconSvgPath: "javascript/javascript-original.svg", id: "javascript", label: "JavaScript" },
+  { deviconSvgPath: "typescript/typescript-original.svg", id: "typescript", label: "TypeScript" },
+  { deviconSvgPath: "react/react-original.svg", id: "react", label: "React" },
+  { deviconSvgPath: "tailwindcss/tailwindcss-original.svg", id: "tailwindcss", label: "TailwindCSS" },
+  { deviconSvgPath: "nodejs/nodejs-original-wordmark.svg", id: "nodejs", label: "Nodejs" },
+  { className: "text-white", deviconSvgPath: "express/express-original.svg", id: "express", label: "Expressjs" },
+  { deviconSvgPath: "mongodb/mongodb-original.svg", id: "mongodb", label: "MongoDB" },
+  { deviconSvgPath: "mongoose/mongoose-original-wordmark.svg", id: "mongoose", label: "mongoose" },
 ];
 
-function Skills() {
-  const containerRef = useGsapScrollReveal({ selector: ".skill-badge", stagger: 0.08 });
+const Skills = (): ReactElement => {
+  const containerRef = useGsapScrollReveal({ selector: ".skill-badge", stagger: SKILLS_STAGGER });
 
   return (
     <Layout>
-      <div ref={containerRef} className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto" ref={containerRef}>
         <Topic>Skills</Topic>
         <SubTopic>My Current Tech Stack</SubTopic>
         <div
           className="flip-layout grid justify-center gap-8 my-12"
-          style={{ gridTemplateColumns: `var(--layout-skills-cols)` }}
+          style={SKILLS_GRID_STYLE}
         >
-          {skills.map((item, index) => (
-            <div key={index} className="skill-badge">
+          {skills.map((item) => (
+            <div className="skill-badge" key={item.id}>
               <ProgrammingLanguage
-                label={item.label}
-                deviconSvgPath={item.deviconSvgPath}
                 className={item.className}
+                deviconSvgPath={item.deviconSvgPath}
+                label={item.label}
               />
             </div>
           ))}
@@ -48,6 +56,6 @@ function Skills() {
       </div>
     </Layout>
   );
-}
+};
 
-export default Skills;
+export { Skills };

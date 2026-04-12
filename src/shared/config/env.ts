@@ -1,1 +1,3 @@
-export const RESEND_API_KEY = import.meta.env.VITE_RESEND_EMAIL_API as string | undefined;
+const RESEND_API_KEY = import.meta.env.VITE_RESEND_EMAIL_API as string | undefined;
+
+export { RESEND_API_KEY };

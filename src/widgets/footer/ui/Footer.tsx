@@ -1,7 +1,10 @@
 import { Facebook, Github, Linkedin } from "lucide-react";
-import Layout from "@/shared/ui/layout/Layout";
+import { Layout } from "@/shared/ui/layout/Layout";
+import type { ReactElement } from "react";
 
-function Footer() {
+const SOCIAL_ICON_SIZE = 24;
+
+const Footer = (): ReactElement => {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -10,31 +13,31 @@ function Footer() {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex gap-6">
             <a
-              href="https://www.facebook.com/kittipan.wang/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-accent transition-colors"
               aria-label="Facebook"
+              className="hover:text-accent transition-colors"
+              href="https://www.facebook.com/kittipan.wang/"
+              rel="noopener noreferrer"
+              target="_blank"
             >
-              <Facebook size={24} />
+              <Facebook size={SOCIAL_ICON_SIZE} />
             </a>
             <a
-              href="https://www.linkedin.com/in/kittipanwang"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-accent transition-colors"
               aria-label="LinkedIn"
+              className="hover:text-accent transition-colors"
+              href="https://www.linkedin.com/in/kittipanwang"
+              rel="noopener noreferrer"
+              target="_blank"
             >
-              <Linkedin size={24} />
+              <Linkedin size={SOCIAL_ICON_SIZE} />
             </a>
             <a
-              href="https://github.com/z3tz3r0"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-accent transition-colors"
               aria-label="GitHub"
+              className="hover:text-accent transition-colors"
+              href="https://github.com/z3tz3r0"
+              rel="noopener noreferrer"
+              target="_blank"
             >
-              <Github size={24} />
+              <Github size={SOCIAL_ICON_SIZE} />
             </a>
           </div>
           <p className="text-sm">
@@ -44,6 +47,6 @@ function Footer() {
       </Layout>
     </footer>
   );
-}
+};
 
-export default Footer;
+export { Footer };

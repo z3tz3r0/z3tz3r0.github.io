@@ -1,13 +1,15 @@
 import { create } from "zustand";
 
 interface UIStore {
+  closeMobileMenu: () => void;
   mobileMenuOpen: boolean;
   toggleMobileMenu: () => void;
-  closeMobileMenu: () => void;
 }
 
-export const useUIStore = create<UIStore>()((set) => ({
+const useUIStore = create<UIStore>()((set) => ({
+  closeMobileMenu: (): void => { set({ mobileMenuOpen: false }); },
   mobileMenuOpen: false,
-  toggleMobileMenu: () => set((state) => ({ mobileMenuOpen: !state.mobileMenuOpen })),
-  closeMobileMenu: () => set({ mobileMenuOpen: false }),
+  toggleMobileMenu: (): void => { set((state) => ({ mobileMenuOpen: !state.mobileMenuOpen })); },
 }));
+
+export { useUIStore };

@@ -1,34 +1,25 @@
 import type { Metric } from "web-vitals";
 
-function sendToAnalytics(metric: Metric) {
-  // In dev: log to console
+const FIXED_DECIMAL_PLACES = 2;
+
+const sendToAnalytics = (metric: Metric): void => {
   if (import.meta.env.DEV) {
-    console.log(`[web-vitals] ${metric.name}: ${metric.value.toFixed(2)} (${metric.rating})`);
-    return;
+    // oxlint-disable-next-line no-console -- Dev-only web vitals logging
+    console.log(`[web-vitals] ${metric.name}: ${metric.value.toFixed(FIXED_DECIMAL_PLACES)} (${metric.rating})`);
   }
 
-  // In prod: send via beacon (Cloudflare or custom endpoint)
-  const body = JSON.stringify({
-    name: metric.name,
-    value: metric.value,
-    rating: metric.rating,
-    delta: metric.delta,
-    id: metric.id,
-    navigationType: metric.navigationType,
-  });
-
   // Cloudflare Web Analytics handles CWV natively via its beacon script.
-  // To send to a custom endpoint, uncomment:
-  // navigator.sendBeacon?.("/api/vitals", body);
-  void body;
-}
+  // To send to a custom endpoint, add: navigator.sendBeacon?.("/api/vitals", body);
+};
 
-export async function initWebVitals() {
-  const { onCLS, onINP, onLCP, onFCP, onTTFB } = await import("web-vitals");
+const initWebVitals = async (): Promise<void> => {
+  const { onCLS, onFCP, onINP, onLCP, onTTFB } = await import("web-vitals");
 
   onCLS(sendToAnalytics);
+  onFCP(sendToAnalytics);
   onINP(sendToAnalytics);
   onLCP(sendToAnalytics);
-  onFCP(sendToAnalytics);
   onTTFB(sendToAnalytics);
-}
+};
+
+export { initWebVitals };

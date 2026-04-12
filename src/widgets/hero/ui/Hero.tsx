@@ -1,89 +1,78 @@
-import { useRef } from "react";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { Button } from "@heroui/react";
-import ScrollVelocity from "@/shared/ui/scroll-velocity/ScrollVelocity";
 import { EASE } from "@/shared/lib/animation";
+import { HIDDEN_STYLE } from "@/shared/lib/styles";
+import { HeroContent } from "@/widgets/hero/ui/HeroContent";
+import type { ReactElement } from "react";
+import { ScrollVelocity } from "@/shared/ui/scroll-velocity/ScrollVelocity";
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
+import { useRef } from "react";
 
-function Hero() {
+const HERO_ANIMATION_DURATION = 0.7;
+const HERO_ANIMATION_OFFSET_LARGE = 40;
+const HERO_ANIMATION_OFFSET_MEDIUM = 30;
+const HERO_ANIMATION_OFFSET_SMALL = 20;
+const HERO_ANIMATION_SCALE_INITIAL = 0.9;
+const HERO_ANIMATION_STAGGER_NORMAL = 0.15;
+const HERO_ANIMATION_STAGGER_IMAGE = 0.1;
+const HERO_MARQUEE_VELOCITY = 20;
+
+const HERO_GRID_STYLE: React.CSSProperties = {
+  gridTemplateColumns: "var(--layout-hero-cols)",
+};
+
+const MARQUEE_TEXTS = ["OPEN FOR HIRING", "OPEN FOR HIRING"];
+
+const Hero = (): ReactElement => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    const q = gsap.utils.selector(containerRef);
+    const querySelector = gsap.utils.selector(containerRef);
+    const mediaMatch = gsap.matchMedia();
 
-    const mm = gsap.matchMedia();
-    mm.add("(prefers-reduced-motion: no-preference)", () => {
-      const tl = gsap.timeline({
-        defaults: { ease: EASE.entrance, duration: 0.7 },
+    mediaMatch.add("(prefers-reduced-motion: no-preference)", () => {
+      const timeline = gsap.timeline({
+        defaults: { duration: HERO_ANIMATION_DURATION, ease: EASE.entrance },
       });
 
-      tl.from(q(".hero-greeting"), { autoAlpha: 0, y: 30 })
-        .from(q(".hero-title"), { autoAlpha: 0, y: 40 }, "<0.15")
-        .from(q(".hero-subtitle"), { autoAlpha: 0, y: 20 }, "<0.15")
-        .from(q(".hero-cta"), { autoAlpha: 0, y: 20 }, "<0.15")
-        .from(q(".hero-image"), { autoAlpha: 0, scale: 0.9 }, "<0.1");
+      timeline
+        .from(querySelector(".hero-greeting"), { autoAlpha: 0, y: HERO_ANIMATION_OFFSET_MEDIUM })
+        .from(querySelector(".hero-title"), { autoAlpha: 0, y: HERO_ANIMATION_OFFSET_LARGE }, `<${HERO_ANIMATION_STAGGER_NORMAL}`)
+        .from(querySelector(".hero-subtitle"), { autoAlpha: 0, y: HERO_ANIMATION_OFFSET_SMALL }, `<${HERO_ANIMATION_STAGGER_NORMAL}`)
+        .from(querySelector(".hero-cta"), { autoAlpha: 0, y: HERO_ANIMATION_OFFSET_SMALL }, `<${HERO_ANIMATION_STAGGER_NORMAL}`)
+        .from(querySelector(".hero-image"), { autoAlpha: 0, scale: HERO_ANIMATION_SCALE_INITIAL }, `<${HERO_ANIMATION_STAGGER_IMAGE}`);
     });
 
-    mm.add("(prefers-reduced-motion: reduce)", () => {
-      gsap.set(q(".hero-greeting, .hero-title, .hero-subtitle, .hero-cta, .hero-image"), {
-        autoAlpha: 1, y: 0, scale: 1,
-      });
+    mediaMatch.add("(prefers-reduced-motion: reduce)", () => {
+      gsap.set(
+        querySelector(".hero-greeting, .hero-title, .hero-subtitle, .hero-cta, .hero-image"),
+        { autoAlpha: 1, scale: 1, y: 0 },
+      );
     });
 
-    return () => mm.revert();
+    return (): void => { mediaMatch.revert(); };
   }, { scope: containerRef });
 
   return (
     <div ref={containerRef} className="text-center pt-4">
       <div
         className="flip-layout px-4 grid gap-16 max-w-7xl mx-auto items-center justify-items-center mb-16"
-        style={{ gridTemplateColumns: `var(--layout-hero-cols)` }}
+        style={HERO_GRID_STYLE}
       >
-        <div className="lg:text-left w-full lg:max-w-6xl">
-          <p className="hero-greeting text-lg font-semibold text-muted-foreground" style={{ visibility: "hidden" }}>
-            Hi There,
-          </p>
-          <p className="hero-title text-5xl lg:text-6xl font-bold mb-4 lg:mb-8" style={{ visibility: "hidden" }}>
-            I am <span className="text-accent">Kittipan</span>
-            <br />
-            Full Stack Software Developer
-          </p>
-          <p className="hero-subtitle font-semibold text-muted-foreground mb-8" style={{ visibility: "hidden" }}>
-            My passion for design, code, and web interaction fuels my journey in
-            the web design realm.
-          </p>
-          <div className="hero-cta flex gap-4 justify-center" style={{ visibility: "hidden" }}>
-            <a href="#work">
-              <Button variant="outline" size="lg" className="px-10 text-lg">
-                See Work
-              </Button>
-            </a>
-            <a
-              href="/CV_Kittipan Wangsakarn.pdf"
-              download="CV-Kittipan_Wangsakarn.pdf"
-            >
-              <Button variant="ghost" size="lg" className="px-10 text-lg">
-                Download CV
-              </Button>
-            </a>
-          </div>
-        </div>
-
+        <HeroContent />
         <img
-          src="/profile.png"
           alt="Kittipan Wangsakarn, Full Stack Developer"
           className="hero-image rounded-xl w-3xs lg:w-full"
-          style={{ visibility: "hidden" }}
+          src="/profile.png"
+          style={HIDDEN_STYLE}
         />
       </div>
-
       <ScrollVelocity
-        texts={["OPEN FOR HIRING", "OPEN FOR HIRING"]}
-        velocity={20}
         className="text-foreground/20 text-6xl mb-4"
+        texts={MARQUEE_TEXTS}
+        velocity={HERO_MARQUEE_VELOCITY}
       />
     </div>
   );
-}
+};
 
-export default Hero;
+export { Hero };

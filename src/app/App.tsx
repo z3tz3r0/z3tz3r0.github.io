@@ -1,10 +1,11 @@
-import { useEffect } from "react";
+import { HomePage } from "@/pages/home/ui/HomePage";
+import type { ReactElement } from "react";
 import { Toaster } from "@/shared/ui/sonner";
-import HomePage from "@/pages/home/ui/HomePage";
+import { useEffect } from "react";
 import { useThemeStore } from "@/features/theme-switcher/model/useThemeStore";
 
-function App() {
-  const hydrate = useThemeStore((s) => s.hydrate);
+const App = (): ReactElement => {
+  const hydrate = useThemeStore((state) => state.hydrate);
 
   useEffect(() => {
     hydrate();
@@ -16,6 +17,6 @@ function App() {
       <Toaster richColors />
     </>
   );
-}
+};
 
-export default App;
+export { App };

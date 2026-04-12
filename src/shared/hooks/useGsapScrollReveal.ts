@@ -1,79 +1,82 @@
-import { useRef } from "react";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { EASE } from "@/shared/lib/animation";
+import type { RefObject } from "react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
+import { useRef } from "react";
+
+const DEFAULT_SELECTOR = ".reveal";
+const DEFAULT_START = "top 80%";
+const DEFAULT_STAGGER = 0.1;
+const DEFAULT_DURATION = 0.6;
+const DEFAULT_Y_OFFSET = 40;
 
 interface ScrollRevealOptions {
+  /** Animation duration in seconds */
+  duration?: number;
   /** CSS selector for elements to reveal inside the container */
   selector?: string;
-  /** ScrollTrigger start position (default: "top 80%") */
+  /** ScrollTrigger start position */
   start?: string;
-  /** Stagger between items in seconds (default: 0.1) */
+  /** Stagger between items in seconds */
   stagger?: number;
-  /** Animation duration in seconds (default: 0.6) */
-  duration?: number;
-  /** Y offset to animate from (default: 40) */
-  y?: number;
+  /** Y offset to animate from */
+  yOffset?: number;
 }
 
 /**
  * Hook that registers scroll-triggered reveal animations.
  * Uses ScrollTrigger.batch for efficient batched reveals.
  * Respects prefers-reduced-motion via gsap.matchMedia.
- *
- * Usage:
- *   const containerRef = useGsapScrollReveal({ selector: ".reveal-item" });
- *   return <div ref={containerRef}>...</div>
  */
-export function useGsapScrollReveal(options: ScrollRevealOptions = {}) {
+const useGsapScrollReveal = (options: ScrollRevealOptions = {}): RefObject<HTMLDivElement | null> => {
   const {
-    selector = ".reveal",
-    start = "top 80%",
-    stagger = 0.1,
-    duration = 0.6,
-    y = 40,
+    duration = DEFAULT_DURATION,
+    selector = DEFAULT_SELECTOR,
+    start = DEFAULT_START,
+    stagger = DEFAULT_STAGGER,
+    yOffset = DEFAULT_Y_OFFSET,
   } = options;
 
   const containerRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    if (!containerRef.current) return;
+    if (!containerRef.current) { return; }
 
-    const q = gsap.utils.selector(containerRef);
-    const elements = q(selector);
+    const queryElements = gsap.utils.selector(containerRef);
+    const elements = queryElements(selector);
 
-    if (elements.length === 0) return;
+    if (elements.length === 0) { return; }
 
-    // Set initial hidden state
-    gsap.set(elements, { autoAlpha: 0, y });
+    gsap.set(elements, { autoAlpha: 0, y: yOffset });
 
-    const mm = gsap.matchMedia();
+    const mediaMatch = gsap.matchMedia();
 
-    mm.add("(prefers-reduced-motion: no-preference)", () => {
+    mediaMatch.add("(prefers-reduced-motion: no-preference)", () => {
       ScrollTrigger.batch(elements, {
         onEnter: (batch) => {
           gsap.to(batch, {
             autoAlpha: 1,
-            y: 0,
-            stagger,
             duration,
             ease: EASE.entrance,
             overwrite: true,
+            stagger,
+            y: 0,
           });
         },
-        start,
         once: true,
+        start,
       });
     });
 
-    mm.add("(prefers-reduced-motion: reduce)", () => {
-      // Skip animation, show immediately
+    mediaMatch.add("(prefers-reduced-motion: reduce)", () => {
       gsap.set(elements, { autoAlpha: 1, y: 0 });
     });
 
-    return () => mm.revert();
+    return (): void => { mediaMatch.revert(); };
   }, { scope: containerRef });
 
   return containerRef;
-}
+};
+
+export { useGsapScrollReveal };

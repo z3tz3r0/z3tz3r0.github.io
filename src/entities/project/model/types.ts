@@ -1,15 +1,17 @@
-export interface Project {
-  title: string;
-  description: string;
-  gitHubLink: string;
-  gitHubBackendLink?: string;
+interface Project {
   actualLink: string;
-  imageSrcBefore: string;
+  description: string;
+  gitHubBackendLink?: string;
+  gitHubLink: string;
   imageSrcAfter?: string;
+  imageSrcBefore: string;
+  title: string;
 }
 
-export interface HtmlProject {
+interface HtmlProject {
   name: string;
-  screenshotUrl: string;
   projectUrl: string;
+  screenshotUrl: string;
 }
+
+export type { HtmlProject, Project };
