@@ -1,0 +1,15 @@
+{
+  "plugins": ["react", "react-perf", "import", "promise", "typescript", "jsx-a11y"],
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": "off",
+    "import/no-named-export": "off",
+    "import/prefer-default-export": "off",
+    "no-duplicate-imports": "off",
+    "id-length": ["error", { "exceptions": ["x", "y"] }],
+    "no-magic-numbers": ["error", { "ignore": [0, 1, -1] }],
+    "max-lines-per-function": ["error", { "max": 80 }],
+    "max-statements": ["error", { "max": 12 }]
+  },
+  "ignorePatterns": ["node_modules", "dist", "ecommerce", "scripts"]
+}
