@@ -4,23 +4,19 @@ name: Deploy to GitHub Pages
 
 on:
     push:
-        branches: [main] # Adjust branch name if needed
+        branches: [main]
     workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
     contents: read
     pages: write
     id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
     group: "pages"
     cancel-in-progress: false
 
 jobs:
-    # Use a single job structure like the SO example for now
     deploy:
         environment:
             name: github-pages
@@ -30,39 +26,23 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v4
 
-            # STEP 1: Setup pnpm FIRST using pnpm/action-setup
-            - name: Setup pnpm
-              uses: pnpm/action-setup@v3 # Use latest major version
-              with:
-                  version: 8 # Or your desired pnpm version
+            - name: Setup Bun
+              uses: oven-sh/setup-bun@v2
 
-            # STEP 2: Setup Node.js AFTER pnpm setup, now enabling cache
-            - name: Setup Node.js
-              uses: actions/setup-node@v4 # Use latest major version
-              with:
-                  node-version: 20 # Your desired Node version
-                  cache: "pnpm" # Enable caching for pnpm (uses pnpm-lock.yaml)
-
-            # STEP 3: Install dependencies (pnpm should be available)
             - name: Install dependencies
-              run: pnpm install
+              run: bun install --frozen-lockfile
 
-            # STEP 4: Build project
             - name: Build
-              run: pnpm run build
+              run: bun run build
 
-            # STEP 5: Add .nojekyll file (Recommended for SPAs)
             - name: Add .nojekyll file
               run: touch dist/.nojekyll
 
-            # STEP 6: Upload artifact for GitHub Pages deployment
             - name: Upload artifact
-              uses: actions/upload-pages-artifact@v3 # Use latest major version
+              uses: actions/upload-pages-artifact@v3
               with:
-                  # Upload the correct build output directory (usually 'dist')
                   path: "./dist"
 
-            # STEP 7: Deploy to GitHub Pages
             - name: Deploy to GitHub Pages
               id: deployment
-              uses: actions/deploy-pages@v4 # Use latest major version
+              uses: actions/deploy-pages@v4

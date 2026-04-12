@@ -1,0 +1,30 @@
+name: Content Freshness Signal
+
+on:
+  schedule:
+    - cron: '0 0 * * 1' # Every Monday at midnight UTC
+  workflow_dispatch: # Allow manual trigger
+
+permissions:
+  contents: write
+
+jobs:
+  update-freshness:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Update lastmod in structured data
+        run: |
+          TODAY=$(date -u +"%Y-%m-%d")
+          sed -i "s/\"lastmod\":\"[0-9-]*\"/\"lastmod\":\"$TODAY\"/" index.html || true
+          # Also update the sitemap date marker if present
+          echo "$TODAY" > .last-updated
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --staged --quiet || git commit -m "chore: update content freshness signal"
+          git push || true
