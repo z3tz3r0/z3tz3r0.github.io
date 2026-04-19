@@ -56,7 +56,7 @@ const About = (): ReactElement => {
         <div className="flex flex-col md:flex-row items-center gap-12 my-12">
           <div className="w-full md:w-1/2 flex justify-center">
             <img
-              alt="Kittipan Wangsakarn portrait"
+              alt="Kittipan W portrait"
               className="about-image rounded-full w-64 h-64 object-cover shadow-lg transition-transform duration-300 ease-in-out hover:scale-105"
               src="/profile.png"
               style={HIDDEN_STYLE}

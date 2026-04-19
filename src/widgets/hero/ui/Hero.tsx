@@ -60,7 +60,7 @@ const Hero = (): ReactElement => {
       >
         <HeroContent />
         <img
-          alt="Kittipan Wangsakarn, Full Stack Developer"
+          alt="Kittipan W, Full Stack Developer"
           className="hero-image rounded-xl w-3xs lg:w-full"
           src="/profile.png"
           style={HIDDEN_STYLE}

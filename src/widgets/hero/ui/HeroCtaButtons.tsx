@@ -9,7 +9,7 @@ const HeroCtaButtons = (): ReactElement => (
         See Work
       </Button>
     </a>
-    <a download="CV-Kittipan_Wangsakarn.pdf" href="/CV_Kittipan Wangsakarn.pdf">
+    <a download="CV-Kittipan_W.pdf" href="/CV_Kittipan W.pdf">
       <Button className="px-10 text-lg" size="lg" type="button" variant="ghost">
         Download CV
       </Button>
