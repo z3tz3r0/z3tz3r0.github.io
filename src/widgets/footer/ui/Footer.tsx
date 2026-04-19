@@ -24,7 +24,7 @@ const Footer = (): ReactElement => {
             <a
               aria-label="LinkedIn"
               className="hover:text-accent transition-colors"
-              href="https://www.linkedin.com/in/kittipanwang"
+              href="https://www.linkedin.com/in/kittipan-w"
               rel="noopener noreferrer"
               target="_blank"
             >
