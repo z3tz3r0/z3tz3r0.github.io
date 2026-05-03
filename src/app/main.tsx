@@ -9,9 +9,14 @@ import { gsap } from "gsap";
 import { initWebVitals } from "@/shared/lib/analytics";
 import { useGSAP } from "@gsap/react";
 
+if (import.meta.env.DEV) {
+  import("react-grab");
+}
+
 gsap.registerPlugin(useGSAP, ScrollTrigger, Flip);
 
 const rootElement = document.getElementById("root");
+
 if (rootElement) {
   createRoot(rootElement).render(
     <StrictMode>
