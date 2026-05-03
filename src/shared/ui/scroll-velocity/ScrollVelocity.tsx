@@ -30,7 +30,8 @@ const ScrollVelocity = ({
       <VelocityRow
         baseVelocity={getBaseVelocity(index, velocity)}
         className={className}
-        key={`scroll-text-${text}`}
+        // oxlint-disable-next-line react/no-array-index-key -- Caller may pass duplicate texts intentionally (marquee seam)
+        key={`scroll-text-${text}-${String(index)}`}
         numCopies={numCopies}
         text={text}
       />

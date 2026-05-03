@@ -1,8 +1,24 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-type ThemeName = "default" | "luxury" | "editorial" | "cyberpunk" | "minimal";
+// SYNC: must match validThemes in index.html init script
+const ALL_THEMES = [
+  "default",
+  "luxury",
+  "editorial",
+  "cyberpunk",
+  "minimal",
+  "medieval",
+  "fantasy",
+  "christmas",
+  "halloween",
+  "anime",
+  "dinosaur",
+  "space",
+] as const;
 
+type ThemeName = typeof ALL_THEMES[number];
+// SYNC: must match lightThemes in index.html init script
 const LIGHT_THEMES = new Set<ThemeName>(["minimal"]);
 const THEME_TRANSITION_MS = 500;
 
@@ -12,25 +28,29 @@ interface ThemeStore {
   theme: ThemeName;
 }
 
-const applyThemeClass = (theme: ThemeName, withTransition = false): void => {
-  const root = document.documentElement;
+const swapThemeClass = (root: HTMLElement, theme: ThemeName): void => {
+  for (const name of ALL_THEMES) {
+    root.classList.remove(`theme-${name}`);
+  }
+  root.classList.add(`theme-${theme}`);
+  root.dataset.theme = theme;
+  if (LIGHT_THEMES.has(theme)) {
+    root.classList.remove("dark");
+  } else {
+    root.classList.add("dark");
+  }
+};
 
+const applyThemeClass = (theme: ThemeName, withTransition = false): void => {
+  if (!ALL_THEMES.includes(theme)) {
+    return;
+  }
+  const root = document.documentElement;
   if (withTransition) {
     root.classList.add("theme-transitioning");
     setTimeout(() => { root.classList.remove("theme-transitioning"); }, THEME_TRANSITION_MS);
   }
-
-  root.className = root.className.replaceAll(/\btheme-\S+/g, "").trim();
-
-  if (theme !== "default") {
-    root.classList.add(`theme-${theme}`);
-  }
-
-  if (LIGHT_THEMES.has(theme)) {
-    root.classList.remove("dark");
-  } else if (!root.classList.contains("dark")) {
-    root.classList.add("dark");
-  }
+  swapThemeClass(root, theme);
 };
 
 const useThemeStore = create<ThemeStore>()(
@@ -50,4 +70,4 @@ const useThemeStore = create<ThemeStore>()(
 );
 
 export type { ThemeName };
-export { useThemeStore };
+export { ALL_THEMES, useThemeStore };

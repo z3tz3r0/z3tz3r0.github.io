@@ -1,0 +1,451 @@
+/* ============================================================
+   PER-THEME VARIABLES
+   Each block defines the full token surface for one theme.
+   Layout vars (--layout-*) and shadow/font tokens are theme-distinct.
+   Apply via class on <html>: theme-default, theme-luxury, theme-editorial,
+   theme-cyberpunk, theme-minimal, theme-medieval, theme-fantasy,
+   theme-christmas, theme-halloween, theme-anime, theme-dinosaur, theme-space.
+   The `dark` class is toggled separately by useThemeStore for HeroUI dark-mode awareness.
+
+   COLLISION NOTE (verified 2026-05-03 against @heroui/styles 3.0.2):
+   HeroUI defines `.dark, [data-theme="dark"] { --background, --foreground, --accent,
+   --muted, --border, --radius, ... }` inside `@layer base` in
+   node_modules/@heroui/styles/dist/themes/default/variables.css. Our `.theme-*`
+   selectors below are intentionally unlayered, so per CSS cascade rules they
+   win against any layered HeroUI rule regardless of source order or specificity.
+   Do NOT wrap these blocks in `@layer base { ... }` or token overrides will
+   start losing to HeroUI defaults whenever the `dark` class is also present.
+   ============================================================ */
+
+/* ============================================================
+   THEME: DEFAULT (Dark + Orange)
+   Skill-CLI: minimalist portfolio personal site dark
+   Zinc-on-black with orange signature accent, Geist font, 10px radius
+   ============================================================ */
+.theme-default {
+  --radius: 0.625rem;
+  --font-body: "Geist", "Work Sans", sans-serif;
+  --font-heading-family: "Geist", "Work Sans", sans-serif;
+  --layout-hero-cols: 1fr 1fr;
+  --layout-skills-cols: repeat(auto-fit, minmax(100px, 1fr));
+  --layout-card-direction: row;
+  --layout-section-gap: 4rem;
+  --shadow-card: 0 2px 8px oklch(0 0 0 / 25%);
+
+  --background: oklch(0.17 0.006 285.722);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.21 0.006 285.885);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.21 0.006 285.885);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.92 0.004 286.32);
+  --primary-foreground: oklch(0.21 0.006 285.885);
+  --secondary: oklch(0.274 0.006 286.033);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.274 0.006 286.033);
+  --muted-foreground: oklch(0.705 0.015 286.067);
+  --accent: oklch(0.705 0.187 47.604);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.705 0.187 47.604);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.21 0.006 285.885);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.274 0.006 286.033);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.552 0.016 285.938);
+}
+
+/* ============================================================
+   THEME: LUXURY (Dark Premium)
+   Skill-CLI: luxury premium brand dark gold
+   Stone-on-black with amber-gold accent, Bodoni Moda heading + Jost body
+   ============================================================ */
+.theme-luxury {
+  --radius: 1rem;
+  --font-body: "Jost", "Geist", sans-serif;
+  --font-heading-family: "Bodoni Moda", "Georgia", serif;
+  --layout-hero-cols: 2fr 1fr;
+  --layout-skills-cols: repeat(5, 1fr);
+  --layout-card-direction: row;
+  --layout-section-gap: 5rem;
+  --shadow-card: 0 4px 20px oklch(0 0 0 / 40%), 0 1px 4px oklch(0.681 0.142 75.834 / 10%);
+
+  --background: oklch(0.147 0.004 49.25);
+  --foreground: oklch(0.985 0.001 106.424);
+  --card: oklch(0.216 0.006 56.043);
+  --card-foreground: oklch(0.985 0.001 106.424);
+  --popover: oklch(0.216 0.006 56.043);
+  --popover-foreground: oklch(0.985 0.001 106.424);
+  --primary: oklch(0.681 0.142 75.834);
+  --primary-foreground: oklch(0.147 0.004 49.25);
+  --secondary: oklch(0.374 0.009 67.558);
+  --secondary-foreground: oklch(0.985 0.001 106.424);
+  --muted: oklch(0.216 0.006 56.043);
+  --muted-foreground: oklch(0.65 0.024 70);
+  --accent: oklch(0.681 0.142 75.834);
+  --accent-foreground: oklch(0.147 0.004 49.25);
+  --destructive: oklch(0.65 0.2 25);
+  --border: oklch(0.374 0.009 67.558 / 25%);
+  --input: oklch(0.374 0.009 67.558 / 18%);
+  --ring: oklch(0.681 0.142 75.834);
+}
+
+/* ============================================================
+   THEME: EDITORIAL (Magazine)
+   Skill-CLI: editorial magazine blog typography
+   Zinc-black with pink accent, Libre Bodoni heading + Public Sans body, single-col
+   ============================================================ */
+.theme-editorial {
+  --radius: 0.25rem;
+  --font-body: "Public Sans", "Geist", sans-serif;
+  --font-heading-family: "Libre Bodoni", "Georgia", serif;
+  --layout-hero-cols: 1fr;
+  --layout-skills-cols: repeat(auto-fit, minmax(120px, 1fr));
+  --layout-card-direction: column;
+  --layout-section-gap: 6rem;
+  --shadow-card: none;
+
+  --background: oklch(0.141 0.004 285.823);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.21 0.006 285.885);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.21 0.006 285.885);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.985 0 0);
+  --primary-foreground: oklch(0.141 0.004 285.823);
+  --secondary: oklch(0.37 0.012 285.805);
+  --secondary-foreground: oklch(0.95 0 0);
+  --muted: oklch(0.21 0.006 285.885);
+  --muted-foreground: oklch(0.6 0.01 285);
+  --accent: oklch(0.55 0.212 354.308);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.6 0.22 25);
+  --border: oklch(1 0 0 / 8%);
+  --input: oklch(1 0 0 / 10%);
+  --ring: oklch(0.55 0.212 354.308);
+}
+
+/* ============================================================
+   THEME: CYBERPUNK (Neon + Raw)
+   Skill-CLI: cyberpunk gaming neon HUD
+   Violet-rose neon, Orbitron heading + JetBrains Mono body, sharp corners
+   ============================================================ */
+.theme-cyberpunk {
+  --radius: 0rem;
+  --font-body: "JetBrains Mono", "Geist Mono", monospace;
+  --font-heading-family: "Orbitron", "Geist Mono", monospace;
+  --layout-hero-cols: 1fr;
+  --layout-skills-cols: repeat(auto-fit, minmax(80px, 1fr));
+  --layout-card-direction: column;
+  --layout-section-gap: 3rem;
+  --shadow-card: 0 0 20px oklch(0.541 0.247 293.009 / 25%), 0 0 4px oklch(0.645 0.215 16.439 / 20%);
+
+  --background: oklch(0.181 0.04 281.572);
+  --foreground: oklch(0.929 0.013 255.508);
+  --card: oklch(0.228 0.038 282.932);
+  --card-foreground: oklch(0.929 0.013 255.508);
+  --popover: oklch(0.228 0.038 282.932);
+  --popover-foreground: oklch(0.929 0.013 255.508);
+  --primary: oklch(0.541 0.247 293.009);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.282 0.037 283.813);
+  --secondary-foreground: oklch(0.709 0.159 293.541);
+  --muted: oklch(0.282 0.037 283.813);
+  --muted-foreground: oklch(0.65 0.08 290);
+  --accent: oklch(0.645 0.215 16.439);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.65 0.25 25);
+  --border: oklch(0.38 0.178 293.745 / 35%);
+  --input: oklch(0.38 0.178 293.745 / 20%);
+  --ring: oklch(0.645 0.215 16.439);
+}
+
+/* ============================================================
+   THEME: MINIMAL (Light + Clean) [LIGHT-DEFAULT]
+   Skill-CLI: swiss minimal warm light portfolio
+   Zinc + blue accent, Inter, classic 5-col skills
+   ============================================================ */
+.theme-minimal {
+  --radius: 0.5rem;
+  --font-body: "Inter", "Geist", sans-serif;
+  --font-heading-family: "Inter", "Geist", sans-serif;
+  --layout-hero-cols: 1fr 1fr;
+  --layout-skills-cols: repeat(5, 1fr);
+  --layout-card-direction: row;
+  --layout-section-gap: 5rem;
+  --shadow-card: 0 1px 3px oklch(0.141 0.004 285.823 / 10%);
+
+  --background: oklch(0.985 0 0);
+  --foreground: oklch(0.141 0.004 285.823);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.141 0.004 285.823);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.141 0.004 285.823);
+  --primary: oklch(0.21 0.006 285.885);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.92 0.004 286.32);
+  --secondary-foreground: oklch(0.21 0.006 285.885);
+  --muted: oklch(0.92 0.004 286.32);
+  --muted-foreground: oklch(0.45 0.012 285.805);
+  --accent: oklch(0.546 0.215 262.881);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.55 0.22 25);
+  --border: oklch(0.141 0.004 285.823 / 12%);
+  --input: oklch(0.141 0.004 285.823 / 8%);
+  --ring: oklch(0.546 0.215 262.881);
+}
+
+/* ============================================================
+   THEME: MEDIEVAL (Dark · Hand-derived)
+   Oxblood-on-charcoal with burnt-gold, Cinzel heading + Crimson Text body
+   Scroll-feel two-col layout, large radius for parchment edges
+   ============================================================ */
+.theme-medieval {
+  --radius: 0.75rem;
+  --font-body: "Crimson Text", "Georgia", serif;
+  --font-heading-family: "Cinzel", "Georgia", serif;
+  --layout-hero-cols: 1fr 1fr;
+  --layout-skills-cols: repeat(auto-fit, minmax(110px, 1fr));
+  --layout-card-direction: row;
+  --layout-section-gap: 5rem;
+  --shadow-card: 0 4px 12px oklch(0 0 0 / 50%), inset 0 1px 0 oklch(0.72 0.12 66 / 10%);
+
+  --background: oklch(0.181 0.023 53.678);
+  --foreground: oklch(0.937 0.035 85.408);
+  --card: oklch(0.234 0.036 42.459);
+  --card-foreground: oklch(0.937 0.035 85.408);
+  --popover: oklch(0.234 0.036 42.459);
+  --popover-foreground: oklch(0.937 0.035 85.408);
+  --primary: oklch(0.72 0.12 66);
+  --primary-foreground: oklch(0.181 0.023 53.678);
+  --secondary: oklch(0.298 0.042 59.187);
+  --secondary-foreground: oklch(0.937 0.035 85.408);
+  --muted: oklch(0.234 0.036 42.459);
+  --muted-foreground: oklch(0.7 0.04 70);
+  --accent: oklch(0.74 0.13 50);
+  --accent-foreground: oklch(0.181 0.023 53.678);
+  --destructive: oklch(0.55 0.2 22);
+  --border: oklch(0.298 0.042 59.187 / 35%);
+  --input: oklch(0.298 0.042 59.187 / 20%);
+  --ring: oklch(0.72 0.12 66);
+}
+
+/* ============================================================
+   THEME: FANTASY (Dark · Hand-derived)
+   Lavender-rose-gold on deep violet night, Great Vibes script + Cormorant body
+   Aurora-feel 2:1 hero, soft 5rem gap
+   ============================================================ */
+.theme-fantasy {
+  --radius: 1.25rem;
+  --font-body: "Cormorant Garamond", "Georgia", serif;
+  --font-heading-family: "Great Vibes", "Cormorant Garamond", cursive;
+  --layout-hero-cols: 2fr 1fr;
+  --layout-skills-cols: repeat(auto-fit, minmax(100px, 1fr));
+  --layout-card-direction: row;
+  --layout-section-gap: 5rem;
+  --shadow-card: 0 8px 32px oklch(0.38 0.178 293.745 / 30%), 0 2px 8px oklch(0.725 0.175 349.761 / 15%);
+
+  --background: oklch(0.227 0.055 294.287);
+  --foreground: oklch(0.968 0.025 78.921);
+  --card: oklch(0.275 0.072 293.797);
+  --card-foreground: oklch(0.968 0.025 78.921);
+  --popover: oklch(0.275 0.072 293.797);
+  --popover-foreground: oklch(0.968 0.025 78.921);
+  --primary: oklch(0.709 0.159 293.541);
+  --primary-foreground: oklch(0.227 0.055 294.287);
+  --secondary: oklch(0.725 0.175 349.761);
+  --secondary-foreground: oklch(0.227 0.055 294.287);
+  --muted: oklch(0.275 0.072 293.797);
+  --muted-foreground: oklch(0.75 0.06 320);
+  --accent: oklch(0.837 0.164 84.429);
+  --accent-foreground: oklch(0.227 0.055 294.287);
+  --destructive: oklch(0.6 0.22 25);
+  --border: oklch(0.38 0.178 293.745 / 30%);
+  --input: oklch(0.38 0.178 293.745 / 18%);
+  --ring: oklch(0.709 0.159 293.541);
+}
+
+/* ============================================================
+   THEME: CHRISTMAS (Dark · Hand-derived)
+   Cranberry-gold on pine, Playfair Display heading + Source Sans body
+   Cozy symmetrical 1:1 hero, 4rem warm gap
+   ============================================================ */
+.theme-christmas {
+  --radius: 0.875rem;
+  --font-body: "Source Sans 3", "Geist", sans-serif;
+  --font-heading-family: "Playfair Display", "Georgia", serif;
+  --layout-hero-cols: 1fr 1fr;
+  --layout-skills-cols: repeat(4, 1fr);
+  --layout-card-direction: row;
+  --layout-section-gap: 4rem;
+  --shadow-card: 0 4px 14px oklch(0 0 0 / 35%), 0 1px 3px oklch(0.55 0.215 27.325 / 12%);
+
+  --background: oklch(0.215 0.048 143.689);
+  --foreground: oklch(0.962 0.058 95.617);
+  --card: oklch(0.319 0.057 144.08);
+  --card-foreground: oklch(0.962 0.058 95.617);
+  --popover: oklch(0.319 0.057 144.08);
+  --popover-foreground: oklch(0.962 0.058 95.617);
+  --primary: oklch(0.55 0.215 27.325);
+  --primary-foreground: oklch(0.962 0.058 95.617);
+  --secondary: oklch(0.448 0.108 151.328);
+  --secondary-foreground: oklch(0.962 0.058 95.617);
+  --muted: oklch(0.319 0.057 144.08);
+  --muted-foreground: oklch(0.78 0.06 100);
+  --accent: oklch(0.681 0.142 75.834);
+  --accent-foreground: oklch(0.215 0.048 143.689);
+  --destructive: oklch(0.55 0.22 25);
+  --border: oklch(0.448 0.108 151.328 / 30%);
+  --input: oklch(0.448 0.108 151.328 / 18%);
+  --ring: oklch(0.55 0.215 27.325);
+}
+
+/* ============================================================
+   THEME: HALLOWEEN (Dark · Hand-derived)
+   Pumpkin-plum-toxic-green on void, Creepster heading + Inter body
+   Asymmetric 1fr hero, tight 3rem gap, sharper radius
+   ============================================================ */
+.theme-halloween {
+  --radius: 0.125rem;
+  --font-body: "Inter", "Geist", sans-serif;
+  --font-heading-family: "Creepster", "Inter", cursive;
+  --layout-hero-cols: 1fr;
+  --layout-skills-cols: repeat(auto-fit, minmax(90px, 1fr));
+  --layout-card-direction: column;
+  --layout-section-gap: 3rem;
+  --shadow-card: 0 0 24px oklch(0.646 0.194 41.116 / 25%), 0 0 8px oklch(0.768 0.204 130.85 / 15%);
+
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.97 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.97 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.97 0 0);
+  --primary: oklch(0.646 0.194 41.116);
+  --primary-foreground: oklch(0.145 0 0);
+  --secondary: oklch(0.381 0.166 304.987);
+  --secondary-foreground: oklch(0.97 0 0);
+  --muted: oklch(0.218 0 0);
+  --muted-foreground: oklch(0.7 0.02 0);
+  --accent: oklch(0.768 0.204 130.85);
+  --accent-foreground: oklch(0.145 0 0);
+  --destructive: oklch(0.65 0.25 25);
+  --border: oklch(0.381 0.166 304.987 / 35%);
+  --input: oklch(0.381 0.166 304.987 / 20%);
+  --ring: oklch(0.646 0.194 41.116);
+}
+
+/* ============================================================
+   THEME: ANIME (Dark · Skill-CLI: anime japanese vibrant entertainment)
+   Pink-rose-blue on dark plum-rose, Noto Serif JP heading + Noto Sans JP body
+   Kinetic 5-col skills, 4rem energetic gap
+   ============================================================ */
+.theme-anime {
+  --radius: 1.5rem;
+  --font-body: "Noto Sans JP", "Geist", sans-serif;
+  --font-heading-family: "Noto Serif JP", "Georgia", serif;
+  --layout-hero-cols: 1fr 1fr;
+  --layout-skills-cols: repeat(5, 1fr);
+  --layout-card-direction: row;
+  --layout-section-gap: 4rem;
+  --shadow-card: 0 6px 20px oklch(0.725 0.175 349.761 / 25%), 0 2px 6px oklch(0.714 0.143 254.624 / 15%);
+
+  --background: oklch(0.183 0.045 317.216);
+  --foreground: oklch(0.948 0.028 342.258);
+  --card: oklch(0.252 0.046 325.084);
+  --card-foreground: oklch(0.948 0.028 342.258);
+  --popover: oklch(0.252 0.046 325.084);
+  --popover-foreground: oklch(0.948 0.028 342.258);
+  --primary: oklch(0.725 0.175 349.761);
+  --primary-foreground: oklch(0.183 0.045 317.216);
+  --secondary: oklch(0.719 0.169 13.428);
+  --secondary-foreground: oklch(0.183 0.045 317.216);
+  --muted: oklch(0.252 0.046 325.084);
+  --muted-foreground: oklch(0.78 0.05 340);
+  --accent: oklch(0.714 0.143 254.624);
+  --accent-foreground: oklch(0.183 0.045 317.216);
+  --destructive: oklch(0.65 0.25 25);
+  --border: oklch(0.408 0.144 2.432 / 35%);
+  --input: oklch(0.408 0.144 2.432 / 20%);
+  --ring: oklch(0.725 0.175 349.761);
+}
+
+/* ============================================================
+   THEME: DINOSAUR (Dark · Hand-derived)
+   Jungle-volcanic-fossil on jungle floor, Russo One + Chakra Petch body
+   Earthy symmetric 1:1 hero, 5rem fossil gap
+   ============================================================ */
+.theme-dinosaur {
+  --radius: 0.375rem;
+  --font-body: "Chakra Petch", "Geist", sans-serif;
+  --font-heading-family: "Russo One", "Geist", sans-serif;
+  --layout-hero-cols: 1fr 1fr;
+  --layout-skills-cols: repeat(auto-fit, minmax(105px, 1fr));
+  --layout-card-direction: row;
+  --layout-section-gap: 5rem;
+  --shadow-card: 0 3px 10px oklch(0 0 0 / 45%), inset 0 -1px 0 oklch(0.555 0.146 48.998 / 12%);
+
+  --background: oklch(0.218 0.044 138.671);
+  --foreground: oklch(0.985 0.001 106.424);
+  --card: oklch(0.268 0.041 130.437);
+  --card-foreground: oklch(0.985 0.001 106.424);
+  --popover: oklch(0.268 0.041 130.437);
+  --popover-foreground: oklch(0.985 0.001 106.424);
+  --primary: oklch(0.448 0.108 151.328);
+  --primary-foreground: oklch(0.985 0.001 106.424);
+  --secondary: oklch(0.408 0.116 38.172);
+  --secondary-foreground: oklch(0.985 0.001 106.424);
+  --muted: oklch(0.268 0.041 130.437);
+  --muted-foreground: oklch(0.72 0.04 130);
+  --accent: oklch(0.555 0.146 48.998);
+  --accent-foreground: oklch(0.985 0.001 106.424);
+  --destructive: oklch(0.55 0.22 25);
+  --border: oklch(0.312 0.047 73.652 / 35%);
+  --input: oklch(0.312 0.047 73.652 / 20%);
+  --ring: oklch(0.448 0.108 151.328);
+}
+
+/* ============================================================
+   THEME: SPACE (Dark · Skill-CLI: space tech aerospace HUD sci-fi)
+   Slate-blue-cyan on deep space, Share Tech Mono heading + Fira Code body
+   1:2 cosmic asymmetric hero, 6rem cosmic gap
+   ============================================================ */
+.theme-space {
+  --radius: 0.25rem;
+  --font-body: "Fira Code", "Geist Mono", monospace;
+  --font-heading-family: "Share Tech Mono", "Fira Code", monospace;
+  --layout-hero-cols: 1fr 2fr;
+  --layout-skills-cols: repeat(auto-fit, minmax(95px, 1fr));
+  --layout-card-direction: row;
+  --layout-section-gap: 6rem;
+  --shadow-card: 0 4px 16px oklch(0 0 0 / 50%), 0 0 2px oklch(0.715 0.126 215.221 / 20%);
+
+  --background: oklch(0.129 0.041 264.695);
+  --foreground: oklch(0.984 0.003 247.858);
+  --card: oklch(0.208 0.04 265.755);
+  --card-foreground: oklch(0.984 0.003 247.858);
+  --popover: oklch(0.208 0.04 265.755);
+  --popover-foreground: oklch(0.984 0.003 247.858);
+  --primary: oklch(0.623 0.188 259.815);
+  --primary-foreground: oklch(0.129 0.041 264.695);
+  --secondary: oklch(0.279 0.037 260.031);
+  --secondary-foreground: oklch(0.984 0.003 247.858);
+  --muted: oklch(0.279 0.037 260.031);
+  --muted-foreground: oklch(0.711 0.035 256.788);
+  --accent: oklch(0.715 0.126 215.221);
+  --accent-foreground: oklch(0.129 0.041 264.695);
+  --destructive: oklch(0.65 0.22 25);
+  --border: oklch(0.424 0.181 265.638 / 35%);
+  --input: oklch(0.424 0.181 265.638 / 18%);
+  --ring: oklch(0.715 0.126 215.221);
+}

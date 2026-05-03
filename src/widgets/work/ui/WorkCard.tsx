@@ -1,11 +1,16 @@
+import type { CSSProperties, ReactElement } from "react";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/shared/ui/resizable/index";
 import { Link } from "lucide-react";
-import type { ReactElement } from "react";
 import { SimpleIconDisplay } from "@/shared/ui/simple-icon/SimpleIconDisplay";
 import { siGithub } from "simple-icons";
 
 const GITHUB_ICON_SIZE = 30;
 const RESIZABLE_DEFAULT_SIZE = 50;
+
+const CARD_STYLE: CSSProperties = {
+  // CSS var resolves to row|column at runtime
+  flexDirection: "var(--layout-card-direction)" as CSSProperties["flexDirection"],
+};
 
 interface WorkCardProps {
   actualLink: string;
@@ -47,7 +52,7 @@ const WorkCard = ({ actualLink, description, gitHubBackendLink, gitHubLink, imag
     );
   }
   return (
-    <div className="relative rounded-xl overflow-hidden group h-80 md:h-96 lg:h-100">
+    <div className="relative rounded-xl overflow-hidden group h-80 md:h-96 lg:h-100 flex" style={CARD_STYLE}>
       {imageSection}
       <div className="absolute inset-0 bg-linear-to-t from-background/80 via-background/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
         <h3 className="text-foreground text-xl font-bold mb-2">{title}</h3>

@@ -1,9 +1,40 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" class="dark theme-default">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kittipan W · Full Stack Developer</title>
+    <script>
+      (function () {
+        try {
+          // SYNC: must match ALL_THEMES in src/features/theme-switcher/model/useThemeStore.ts
+          var validThemes = ["default", "luxury", "editorial", "cyberpunk", "minimal", "medieval", "fantasy", "christmas", "halloween", "anime", "dinosaur", "space"];
+          // SYNC: must match LIGHT_THEMES in src/features/theme-switcher/model/useThemeStore.ts
+          var lightThemes = ["minimal"];
+          var stored = localStorage.getItem("portfolio-theme");
+          var theme = "default";
+          if (stored) {
+            var parsed = JSON.parse(stored);
+            if (parsed && parsed.state && typeof parsed.state.theme === "string" && validThemes.indexOf(parsed.state.theme) !== -1) {
+              theme = parsed.state.theme;
+            }
+          }
+          var root = document.documentElement;
+          for (var i = 0; i < validThemes.length; i++) {
+            root.classList.remove("theme-" + validThemes[i]);
+          }
+          root.classList.add("theme-" + theme);
+          root.setAttribute("data-theme", theme);
+          if (lightThemes.indexOf(theme) === -1) {
+            root.classList.add("dark");
+          } else {
+            root.classList.remove("dark");
+          }
+        } catch (_) {
+          // localStorage unavailable (Safari private mode, embedded contexts) · CSS :root fallback covers it
+        }
+      })();
+    </script>
     <meta name="description" content="Portfolio of Kittipan W, a Full Stack Software Developer specializing in React, TypeScript, Node.js, and modern web experiences." />
     <meta name="author" content="Kittipan W" />
     <meta name="theme-color" content="#0f0f12" />
@@ -71,10 +102,11 @@
     <!-- Cloudflare Web Analytics: replace YOUR_TOKEN with your site token from https://dash.cloudflare.com -->
     <!-- <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "YOUR_TOKEN"}'></script> -->
   </head>
-  <body id="root">
+  <body>
     <!-- Skip to content for accessibility -->
     <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-background focus:text-foreground focus:px-4 focus:py-2 focus:rounded-md">
       Skip to content
     </a>
+    <div id="root"></div>
   </body>
 </html>
